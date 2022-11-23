@@ -1,0 +1,64 @@
+@import url("https://fonts.cdnfonts.com/css/gill-sans");
+@import url("https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom fonts */
+@font-face {
+  font-family: "GoldenSignature";
+  src: url("../public/fonts/GoldenSignature.ttf");
+}
+
+body {
+  /* background-color: #b0b0b013; */
+  /* background-color: #b0b0b00a; */
+  background-color: #69696911;
+}
+
+.poppins {
+  font-family: "Poppins", sans-serif;
+}
+
+.gill-sans-nav {
+  font-family: "Gill Sans", sans-serif;
+}
+
+.lora {
+  font-family: "Lora", serif;
+}
+
+
+.text-vertical {
+  writing-mode: vertical-rl; 
+}
+
+.slick-next::before, .slick-prev::before {
+  content: none;
+}
+
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f2f2f2;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  transition: all 0.3s ease-in-out;
+  background: rgb(168, 168, 168);
+  border-radius: 20px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #929292;
+}
+
