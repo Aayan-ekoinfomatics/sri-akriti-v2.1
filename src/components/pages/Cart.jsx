@@ -92,20 +92,20 @@ const Cart = () => {
       <div className="w-[90%] md:w-[80%] mx-auto grid gap-2 md:gap-5 grid-cols-2 md:grid-cols-3 pt-12">
             {card_data?.products?.map((data, i) => (
               <div className="relative p-2 w-full" key={i}>
-                <div className=" absolute top-0 right-0">
+                <div className=" absolute top-0 right-0 pt-4">
                   <img src={heart_outline} className="w-[20px] mt-4 mr-5" />
                 </div>
                 <div className="my-2">
-                  <div>
-                    <Link to='/product-details' className="w-full" ><img src={data?.image} className="w-full" /></Link>
+                  <div className="w-full">
+                    <Link to='/product-details' className="" ><img src={data?.image} className="w-full" /></Link>
                   </div>
-                  <button className="bg-[#3EDCFF] w-full p-2 md:p-3 text-[12px] py-1 md:text-[20px] md:font-[500] text-white tracking-[1px] md:tracking-[3px]">
+                  <button className="bg-[#3EDCFF] w-full p-2 md:p-3 text-[12px] py-1 md:text-[23px] md:font-[500] text-white tracking-[1px] md:tracking-[3px]">
                     ADD TO CART
                   </button>
-                  <p className="font-[500] poppins text-[12px] md:text-[18px] py-1 tracking-[2px] pl-1">
+                  <p className="font-[500] poppins text-[12px] md:text-[20px] py-1 tracking-[2px] pl-1">
                     ₹{data?.price}
                   </p>
-                  <p className="font-[300] poppins text-[11px] md:text-[18px] py-1 tracking-[1.4px] pl-1">
+                  <p className="font-[300] poppins text-[11px] md:text-[20px] py-1 tracking-[1.4px] pl-1">
                     {data?.title}
                   </p>
                 </div>

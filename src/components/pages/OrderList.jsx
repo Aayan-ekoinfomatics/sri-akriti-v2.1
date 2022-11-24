@@ -7,12 +7,12 @@ import filter from "../../assets/icons/filter.svg";
 import img_left from "../../assets/icons/black-arrow-left.svg";
 import aboutus_img from "../../assets/images/about-us.png";
 import orders from "../../mockapi/orderListApi";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 const OrderList = () => {
   const [currValue, setCurrValue] = useState(0);
   const [hoverValue, setHoverValue] = useState(undefined);
-  const [reviewModal, setReviewModal] = useState(false);
+//   const [reviewModal, setReviewModal] = useState(false);
   const [ activeItem, setActiveItem ] = useState(null);
   const [ filterToggle, setFilterToggle ] = useState(false);
 
@@ -52,7 +52,7 @@ const OrderList = () => {
   return (
       <div className="w-[90%] mx-auto md:w-full">
             <div className="inline-block">
-                <img src={img_left} className="w-[35px] mt-5 md:ml-3 md:mt-3 cursor-pointer" onClick={() => navigate(-1)} />
+                <img src={img_left} className="w-[30px] mt-5 md:ml-[180px] md:mt-5 cursor-pointer" onClick={() => navigate(-1)} />
             </div>
             <div className="w-full my-4 md:mb-24">
                 <h1 className="text-[25px] md:text-[30px] lora italic font-[500] text-center">My Orders</h1>
@@ -87,7 +87,8 @@ const OrderList = () => {
             <div className="pb-[100px] mt-10">
                 {
                     orders?.order_list?.map((data, i) => (
-                        <div onMouseEnter={() => setActiveItem(i)} onMouseLeave={() => setActiveItem(null)} className="border-b border-b-[#696969] flex flex-col items-center max-w-[900px] mx-auto pb-2 my-4 md:pt-4 relative" key={i}   >
+                        <NavLink to='/order-details'  key={i}  >
+                            <div onMouseEnter={() => setActiveItem(i)} onMouseLeave={() => setActiveItem(null)} className="border-b border-b-[#696969] flex flex-col items-center max-w-[900px] mx-auto pb-2 my-4 md:pt-4 relative" >
                             <div className="w-full flex justify-between poppins tracking-[1px]">
                                 <h1 className={`text-[12px] md:text-[16px] ${ data?.status == 'Delivered' ? 'text-[#1E9923]' : 'text-[#FE9D00]'} font-[500]`} >{data?.status}</h1>
                                 <h1 className="text-[10px] md:text-[14px] text-[#00000085] md:text-[black] md:font-[500]">{data?.date}</h1>
@@ -121,17 +122,20 @@ const OrderList = () => {
                                     </div>
                                 </div>
                                 <div className="w-[50%] flex justify-end items-center pr-2">
-                                    <h1 className="poppins tracking-[1px] text-[12px] md:text-[16px] cursor-pointer" onClick={() => setReviewModal(!reviewModal)}>Write a review</h1>
+                                    <h1 className="poppins tracking-[1px] text-[12px] md:text-[16px] cursor-pointer" 
+                                    // onClick={() => setReviewModal(!reviewModal)}
+                                    >Write a review</h1>
                                 </div>
                             </div>
-                            <div className={`${ reviewModal ? 'h-[250px]' : 'h-0 overflow-hidden' } transition-all duration-300 bg-[#dadadaf3] w-full absolute flex flex-col justify-center items-center`}>
+                            {/* <div className={`${ reviewModal ? 'h-[250px]' : 'h-0 overflow-hidden' } transition-all duration-300 bg-[#dadadaf3] w-full absolute flex flex-col justify-center items-center`}>
                                 <div className="w-full pl-2 pt-2">
                                     <img src={close} className="w-[20px] cursor-pointer" onClick={() => setReviewModal(false)}/>
                                 </div>
                                 <h1 className="my-2 poppins text-[15px] tracking-[2px] uppercase">Review</h1>
                                 <textarea name="" id="" cols="70" rows="8" className="my-2 "></textarea>
-                            </div>
+                            </div> */}
                         </div>
+                        </NavLink>
                     ))
                 }
             </div>

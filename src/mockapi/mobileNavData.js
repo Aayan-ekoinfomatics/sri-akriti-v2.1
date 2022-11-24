@@ -519,9 +519,9 @@ const nav_data = {
     //   ],
     // },
     {
-      title: "LOGIN",
+      title: "ACCOUNT",
       id: 7,
-      route: "/login",
+      route: "/account",
       // sub: [
       //   {
       //     sub_title: 'SHOP BY STYLE',

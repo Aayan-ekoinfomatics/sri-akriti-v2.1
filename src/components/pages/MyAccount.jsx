@@ -6,15 +6,15 @@ const MyAccount = () => {
   return (
     <div className='bg-white pb-24'>
         <div className="w-full text-center py-10">
-        <h1 className="lora italic text-[24px]">My Account</h1>
+        <h1 className="lora italic text-[18px] md:text-[28px] font-[500]">My Account</h1>
       </div>
 
       {/* main flex */}
-      <div className='w-[90%] md:w-[80%] mx-auto md:flex md:gap-8 md:flex-row-reverse'>
+      <div className='w-[90%] md:w-[60%] mx-auto md:flex md:gap-8 md:flex-row-reverse'>
         {/* first sub-main flex item */}
         <div className='md:w-[50%] md:flex flex-col justify-between md:pb-4' >
             {/* my Orders */}
-            <div className='w-full bg-[#E3E3E3] my-4 py-2'>
+            <div className='w-full bg-[#E3E3E3] my-4 py-2 mx-10'>
             <div className="w-[90%] mx-auto flex justify-between py-2 lora text-[15px]">
                 <h1 className="font-[500]">{profile_data?.my_orders?.header?.heading}</h1>
                 <Link to='/orders' className="tracking-[2px]">{profile_data?.my_profile?.header?.sub_heading}</Link>
@@ -31,7 +31,7 @@ const MyAccount = () => {
             </div>
 
             {/* wishlist */}
-            <div className='w-full bg-[#E3E3E3] my-4 py-2'>
+            <div className='w-full bg-[#E3E3E3] my-4 py-2 mx-10'>
             <div className="w-[90%] mx-auto flex justify-between py-2 lora text-[15px]">
                 <h1 className="font-[500]">{profile_data?.wishlist?.header?.heading}</h1>
                 <Link to='/wishlist' className="tracking-[2px]">{profile_data?.my_profile?.header?.sub_heading}</Link>
@@ -48,7 +48,7 @@ const MyAccount = () => {
             </div>
 
             {/* card desktop*/}
-            <div className="w-full px-3 bg-[#E3E3E3] my-4 py-2 md:my-0 hidden md:block">
+            <div className="w-full px-3 bg-[#E3E3E3] my-4 mx-10 py-2 md:my-0 hidden md:block">
                 <div className="w-full flex justify-between py-2 lora text-[15px]">
                     <h1 className="font-[500]">{profile_data?.card?.header?.heading}</h1>
                     <h1 className="tracking-[2px]">{profile_data?.card?.header?.sub_heading}</h1>
@@ -72,7 +72,7 @@ const MyAccount = () => {
         {/* second sub-main flex item */}
         <div className='md:w-[50%] md:flex flex-col justify-between' >
             {/* my profile */}
-            <div className='w-full bg-[#E3E3E3] my-4 py-2'>
+            <div className='w-full bg-[#E3E3E3] my-4 py-2 px-4'>
                 <div className="w-[95%] mx-auto flex justify-between py-2 lora text-[15px]">
                     <h1 className="font-[500]">{profile_data?.my_profile?.header?.heading}</h1>
                     <h1 className="tracking-[2px]">{profile_data?.my_profile?.header?.sub_heading}</h1>

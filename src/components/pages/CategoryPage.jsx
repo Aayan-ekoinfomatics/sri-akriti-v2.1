@@ -250,7 +250,7 @@ const CategoryPage = () => {
               <div className={` absolute top-[105%] left-0 shadow-lg z-[1000] bg-white w-full transition-all duration-300 overflow-y-hidden ${desktopSort ? 'h-[230px] ease-in' : 'h-0 ease-out'}`}>
               {
                 collection_data?.sort?.map((data, i) => (
-                  <h1 className="py-[5px] pl-4 lora text-[15px] font-[500] hover:bg-[#D9D9D9] cursor-pointer">{data?.title}</h1>
+                  <h1 className="py-[5px] pl-4 lora text-[15px] font-[500] hover:bg-[#D9D9D9] cursor-pointer" key={i}>{data?.title}</h1>
                 ))
               }
               </div>

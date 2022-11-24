@@ -2,11 +2,19 @@ import React from "react";
 import line from "../../assets/icons/delivery-line.svg";
 import arrow from "../../assets/icons/black-arrow-left.svg";
 import square from "../../assets/images/about-us.png";
+import { NavLink, useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 const OrderDetails = () => {
+
+    const [viewBreakUp, setViewBreakUp] = useState(false);
+
+    const navigate = useNavigate();
+
+
     return (
         <div className="w-[90%] md:w-[80%] mx-auto">
-            <img src={arrow} className="w-[30px] pt-4" />
+            <NavLink to='' onClick={() => navigate(-1)}><img src={arrow} className="w-[30px] pt-4" /></NavLink>
             <h1 className="lora italic text-[22px] font-[500] text-center">
                 Order Details
             </h1>
@@ -34,15 +42,38 @@ const OrderDetails = () => {
                             SJ PTB 307
                         </h1>
                     </div>
-                    <div className="w-[45%] flex flex-col justify-end items-end my-2">
+                    <div className="w-[45%] flex flex-col justify-end items-end my-2 relative">
                         <h1 className="poppins text-[13px] font-[500] md:text-[18px] tracking-[2px] my-2">
                             ₹ 18000
                         </h1>
-                        <h1 className="poppins text-[10px] md:text-[12px] tracking-[2px] my-2">
+                        <h1 className="poppins text-[12px] md:text-[15px] border-b border-b-black pb-1 tracking-[0.5px] md:tracking-[2px] my-2 cursor-pointer" onClick={() => setViewBreakUp(!viewBreakUp)}>
                             View Breakup
                         </h1>
+                        <div className={`absolute top-[100%] md:top-[265px] w-full min-w-[290px] md:min-w-[350px] bg-white overflow-y-hidden transition-all duration-300 shadow-md ${viewBreakUp ? 'h-[280px] ease-in' : 'h-0 ease-out'}`}>
+                            <div className="w-[85%] mx-auto flex justify-between poppins my-4 pt-5">
+                                <h1 className=" text-[15px] tracking-[2px] font-[500] text-[#000000ab]" >Original Price</h1>
+                                <h1 className="font-[500] text-[15px]" >Rs 15,000</h1>
+                            </div>
+                            <div className="w-[85%] mx-auto flex justify-between poppins my-4">
+                                <h1 className=" text-[15px] tracking-[2px] font-[500] text-[#000000ab]" >Tax</h1>
+                                <h1 className="font-[500] text-[15px]" >Rs 2,000</h1>
+                            </div>
+                            <div className="w-[85%] mx-auto flex justify-between poppins my-4">
+                                <h1 className=" text-[15px] tracking-[2px] font-[500] text-[#000000ab]" >Discount Price</h1>
+                                <h1 className="font-[500] text-[15px]" >Rs 1,000</h1>
+                            </div>
+                            <div className="w-[85%] mx-auto flex justify-between poppins my-4">
+                                <h1 className=" text-[15px] tracking-[2px] font-[500] text-[#000000ab]" >Cupon Discount</h1>
+                                <h1 className="font-[500] text-[15px]" >Rs 18,000</h1>
+                            </div>
+                            <div className="w-[85%] mx-auto flex justify-between poppins my-6 border-t border-t-[#696969c4] pt-6">
+                                <h1 className=" text-[14px] tracking-[2px] font-[500] text-[#000000ab]">Paid by</h1>
+                                <h1 className="font-[500] text-[14px] text-[#00000062]">Cash On Delivery</h1>
+                            </div>
+                        </div>
                     </div>
                 </div>
+                
                 <h1 className="poppins text-[11px] md:text-[14px] my-3 mt-6">Return within 14 days of Delivery applicable</h1>
                 <h1 className="poppins text-[11px] md:text-[13px] my-3 mb-6 font-[600]">Person Name, 123-456-789</h1>
                 <div className="bg-[#E6E6E6] p-4 my-4 mt-6 tracking-[1px] ">

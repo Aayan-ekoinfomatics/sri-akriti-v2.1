@@ -8,7 +8,34 @@ import FourthSection from "../landing-subcomponents/FourthSection";
 import FifthSection from "../landing-subcomponents/FifthSection";
 import SixthSection from "../landing-subcomponents/SixthSection";
 import first_section from "../../mockapi/landingFirstSectionApi";
+import landingSectionApiAtom from "../../recoil/atoms/landing-page/landingSectionApiAtom";
+import { useRecoilState } from "recoil";
+import { useEffect } from "react";
+import axios from "axios";
+
+
 const LandingPage = () => {
+
+  const [landingApiData, setLandingApiData] = useRecoilState(landingSectionApiAtom);
+
+  useEffect(() => {
+    axios
+      .get(import.meta.env.VITE_APP_BASE_API_LINK + "landingPage")  
+      .then(function (response) {
+        setLandingApiData(response?.data);
+      
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }, []);
+  
+    // useEffect(() => {
+    //   console.log('API DATA')
+    //   console.log(landingApiData?.first_section);
+    // }, [landingApiData])
+    
+
   return (
     <>
       <div className="w-full mx-auto">
@@ -29,7 +56,7 @@ const LandingPage = () => {
               <div className="w-[45rem] flex-1 font-golden_signature overflow-auto text-[140px] text-[#3EDCFF] translate-x-[240px] translate-y-[100px]">{first_section?.section_data?.section_sub_title}</div>
             </div>
             <div className=" w-[53%]">
-              <img src={hero_img} className="w-[1500px]" />
+              <img src={ import.meta.env.VITE_APP_BASE_API_LINK + landingApiData?.first_section?.section_image} className="w-[1500px]" /> 
             </div>
           </div>
         </div>

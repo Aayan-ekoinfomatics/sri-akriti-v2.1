@@ -7,7 +7,7 @@ const fourth_section = {
     section_data: {
         section_title: 'Made to last longer than life',
         carousal_images: [
-            ring_1, ring_2, chain_1, chain_2, ring_1, ring_2, chain_1, chain_2,
+            { route: '/product-details' , image: ring_1}, { route: '/product-details' , image: ring_2}, { route: '/product-details' , image: chain_1}, { route: '/product-details' , image: chain_2}, { route: '/product-details' , image: ring_1}, { route: '/product-details' , image: ring_2}, { route: '/product-details' , image: chain_1}, { route: '/product-details' , image: chain_2},
         ],
     },
 };

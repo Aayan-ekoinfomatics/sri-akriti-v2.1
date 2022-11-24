@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -10,6 +10,9 @@ import chain_1 from "../../assets/images/chain-1.png";
 import chain_2 from "../../assets/images/chain-2.png";
 import right_arrow from '../../assets/images/rightarrow.png'
 import fourth_section from "../../mockapi/landingFourthSectionApi";
+import { NavLink } from "react-router-dom";
+import landingSectionApiAtom from "../../recoil/atoms/landing-page/landingSectionApiAtom";
+import { useRecoilState } from "recoil";
 
 const PreviousBtn = (props) => {
   const { className, onClick } = props;
@@ -29,13 +32,23 @@ const NextBtn = (props) => {
 };
 
 const FourthSection = () => {
+
+  const [landingFourthSectionApiData, setLandingFourthSectionApiData] = useRecoilState(landingSectionApiAtom);
+
+  // useEffect(() => {
+  //   console.log(landingFourthSectionApiData?.fourth_section?.carousal_images)
+  // }, [landingFourthSectionApiData])
+
+
+
   return (
     <>
       {/* desktop view */}
       <div className="hidden md:block mb-20">
         <div className="flex w-[90%] mx-auto pb-5 pt-16 items-center justify-between">
           <h1 className="lora italic text-[30px]">
-            {fourth_section?.section_data?.section_title}
+            {/* {fourth_section?.section_data?.section_title} */}
+            {landingFourthSectionApiData?.fourth_section?.section_title}
           </h1>
           <p className="tracking-[8px] poppins text-[20px] leading-10">
             SEE FULL COLLECTION
@@ -51,9 +64,9 @@ const FourthSection = () => {
           infinite
         >
           {
-            fourth_section?.section_data?.carousal_images?.map((data, i) => (
+            landingFourthSectionApiData?.fourth_section?.carousal_images?.map((data, i) => (
               <div className="max-w-[100%] h-[100%]" key={i}>
-                <img src={data} className="object-contain" />
+                <NavLink to={data?.route} ><img src={import.meta.env.VITE_APP_BASE_API_LINK + data?.image} className="object-contain" /></NavLink>
               </div>
             ))
           }
