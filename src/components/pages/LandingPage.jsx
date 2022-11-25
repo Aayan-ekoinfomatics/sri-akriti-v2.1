@@ -12,11 +12,18 @@ import landingSectionApiAtom from "../../recoil/atoms/landing-page/landingSectio
 import { useRecoilState } from "recoil";
 import { useEffect } from "react";
 import axios from "axios";
+import navApiAtom from "../../recoil/atoms/global/navApiAtom";
+import { NavLink } from "react-router-dom";
+import categoriesApiAtom from "../../recoil/atoms/products/categoriesApiAtom";
 
 
 const LandingPage = () => {
 
   const [landingApiData, setLandingApiData] = useRecoilState(landingSectionApiAtom);
+
+  const [categoryApiData, setCategoryApiData] = useRecoilState(categoriesApiAtom);
+
+  const [mobileNav, setMobileNav] = useRecoilState(navApiAtom);
 
   useEffect(() => {
     axios
@@ -32,8 +39,8 @@ const LandingPage = () => {
   
     // useEffect(() => {
     //   console.log('API DATA')
-    //   console.log(landingApiData?.first_section);
-    // }, [landingApiData])
+    //   console.log(mobileNav);
+    // }, [mobileNav])
     
 
   return (
@@ -65,10 +72,23 @@ const LandingPage = () => {
         <div className="md:hidden">
           {/* <div className="w-full mt-3" > */}
           <ul className="flex justify-evenly w-full sm:w-[95%] mx-auto px-1">
-            <li className="underline underline-offset-4 underline-[#696969]  decoration-[#69696985] u  p-2 text-[14px] sm:text-[17px] text-gray-500" >{first_section?.section_data?.mobile_categories?.first}</li>
+            {
+              mobileNav?.slice(0, 4)?.map((data, i) => (
+                <NavLink key={i} to={data?.routes} 
+                  onClick={() => {
+                    let formdata = new FormData();
+                    formdata.append("id", data?.id);
+                    formdata.append("title", data?.title);
+
+                    axios.post(import.meta.env.VITE_APP_BASE_API_LINK + 'categoryPage' , formdata).then((response) => setCategoryApiData(response?.data))
+                  }}
+                ><li className="underline underline-offset-4 underline-[#696969]  decoration-[#69696985] u  p-2 text-[14px] sm:text-[17px] text-gray-500" >{data?.title}</li></NavLink>
+              ))
+            }
+            {/* <li className="underline underline-offset-4 underline-[#696969]  decoration-[#69696985] u  p-2 text-[14px] sm:text-[17px] text-gray-500" >{first_section?.section_data?.mobile_categories?.first}</li>
             <li className="underline underline-offset-4 underline-[#696969]  decoration-[#69696985] u  p-2 text-[14px] sm:text-[17px] text-gray-500" >{first_section?.section_data?.mobile_categories?.second}</li>
             <li className="underline underline-offset-4 underline-[#696969]  decoration-[#69696985] u  p-2 text-[14px] sm:text-[17px] text-gray-500" >{first_section?.section_data?.mobile_categories?.third}</li>
-            <li className="underline underline-offset-4 underline-[#696969]  decoration-[#69696985] u  p-2 text-[14px] sm:text-[17px] text-gray-500" >{first_section?.section_data?.mobile_categories?.forth}</li>
+            <li className="underline underline-offset-4 underline-[#696969]  decoration-[#69696985] u  p-2 text-[14px] sm:text-[17px] text-gray-500" >{first_section?.section_data?.mobile_categories?.forth}</li> */}
           </ul>
           {/* </div> */}
           <div className="w-[93%] mt-4 flex justify-between">

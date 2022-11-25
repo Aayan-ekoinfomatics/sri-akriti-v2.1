@@ -31,7 +31,7 @@ const ThirdSection = () => {
                 <NavLink to='/single-category/neckless' ><img src={ import.meta.env.VITE_APP_BASE_API_LINK + data?.image} className="w-full " /></NavLink>
               </div>
             </div>
-          ))
+          )).reverse()
         }
       </div>
 

@@ -73,6 +73,7 @@ function App() {
       <div>
         <Routes>
           <Route path="/" element={<LandingPage />} />
+          {/* <Route path="/" element /> */}
           <Route path="*" element={<Navigate replace to='/' />} />
           <Route path="/product-details" element={<Productpage />} />
           <Route path="/login" element={<Login />} />

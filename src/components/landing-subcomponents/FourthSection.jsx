@@ -66,7 +66,7 @@ const FourthSection = () => {
           {
             landingFourthSectionApiData?.fourth_section?.carousal_images?.map((data, i) => (
               <div className="max-w-[100%] h-[100%]" key={i}>
-                <NavLink to={data?.route} ><img src={import.meta.env.VITE_APP_BASE_API_LINK + data?.image} className="object-contain" /></NavLink>
+                <NavLink to={data?.route}><img src={import.meta.env.VITE_APP_BASE_API_LINK + data?.image} className="object-contain" /></NavLink>
               </div>
             ))
           }

@@ -3,6 +3,7 @@ import search from "../../assets/icons/search.svg";
 import collection_data from "../../mockapi/apiData.js";
 import sort_data from "../../mockapi/allCollectionSortData.js";
 import heart_outline from "../../assets/icons/heart-outline.svg";
+import heart_filled from "../../assets/icons/heart-filled.svg";
 import down_arrow from "../../assets/icons/Arrow-sort.svg";
 import up_arrow from "../../assets/icons/up-arrow.svg";
 import filter from "../../assets/icons/filter.svg";
@@ -13,7 +14,10 @@ import { useRecoilState } from "recoil";
 const CategoryPage = () => {
   const [searchItem, setSearchItem] = useState("");
 
+  const [categoryApiData, setCategoryApiData] = useRecoilState(categoriesApiAtom);
+
   const [sortToggle, setSortToggle] = useState(false);
+  const [wishlistToggle, setWishlistToggle] = useState(false);
   const [filterToggle, setFilterToggle] = useState(false);
   const [ desktopSort, setDesktopSort ] = useState(false);
 
@@ -24,12 +28,8 @@ const CategoryPage = () => {
   const params = useParams();
 
   // useEffect(() => {
-  //   if(params == 'ALL-COLLECTION') {
-  //     collection_data?.all_products?.map((data,i) => {
-
-  //     })
-  //   }
-  // }, [])
+  //   console.log(categoryApiData)
+  // }, [categoryApiData])
 
   window.addEventListener("click", (event) => {
     const sort = document?.getElementById("sort");
@@ -41,6 +41,11 @@ const CategoryPage = () => {
     }
   });
 
+  // useEffect(() => {
+  //   console.log(categoryApiData?.products)
+  // }, [categoryApiData ])
+  
+
   const handleClick = () => {
     setFilterToggle(false);
     setFilterSubCategory(null);
@@ -49,22 +54,22 @@ const CategoryPage = () => {
   return (
     <div>
       <div className="w-full pb-[100px]">
-        {collection_data?.category === "ALL COLLECTION" ? (
+        {categoryApiData?.category === "COLLECTION" ? (
           <>
             <h1 className="text-center text-[30px] md:text-[3.438rem] lora font-semibold py-8 pt-16 uppercase">
-              {params.category_id}
-              {/* {collection_data?.category} */}
+              {/* {params.category_id} */}
+              {categoryApiData?.category}
             </h1>
             <div className="w-full hidden md:block md:w-[43%] lg:w-[33%] mx-auto pt-10 pb-20">
               <div className=" border mt-5 flex w-[90%]  border-[#69696959] mx-auto ">
                 <input
                   type="text"
-                  className="w-full outline-none px-5 py-4 text-[15px] lg:text-[1.25rem] font-[300] poppins tracking-[2px] bg-[#b0b0b00a]"
+                  className="w-full outline-none px-5 py-3 text-[15px] lg:text-[18px] font-[300] poppins tracking-[2px] bg-[#b0b0b00a]"
                   placeholder="Seach your type of Platinum"
                   onChange={(e) => setSearchItem(e.target.value)}
                   value={searchItem}
                 />
-                <img src={search} className="w-[35px] px-1" />
+                <img src={search} className="w-[35px] mx-2 px-1" />
               </div>
             </div>
           </>
@@ -73,13 +78,14 @@ const CategoryPage = () => {
             <div className="flex bg-white px-10 md:py-10">
               <div className="w-full text-center md:text-left md:w-[60%] sm:p-3 mb-10 md:p-6 md:py-20">
                 <h1 className="lora text-[28px] md:text-[45px] tracking-[1px] font-[600] my-5 md:my-16 w-full">
-                  {collection_data?.category}
+                  {categoryApiData?.category}
                 </h1>
                 <p className="poppins text-[12px] md:text-[14px] tracking-[2px] my-5 md:my-16 w-full">
-                  {collection_data?.category_details}
+                  {categoryApiData?.category_details}
                 </p>
               </div>
-              <div className='hidden md:block w-[40%] bg-[url("../src/assets/images/silver-neckless.png")] bg-cover bg-no-repeat bg-bottom'></div>
+              <div className='hidden md:block w-[40%] bg-cover bg-no-repeat bg-bottom' style={{ backgroundImage: `url(${import.meta.env.VITE_APP_BASE_API_LINK + categoryApiData?.category_image})` }} ></div>
+              
             </div>
           </>
         )}
@@ -289,14 +295,14 @@ const CategoryPage = () => {
 
           {/* products */}
           <div className="flex-1 grid gap-[8px] md:gap-8 grid-cols-2 lg:grid-cols-3 p-2">
-            {collection_data?.products?.map((data, i) => (
+            {categoryApiData?.products?.map((data, i) => (
               <div className="relative my-2" key={i}>
-                <div className=" absolute top-0 right-0">
-                  <img src={heart_outline} className="w-[25px] mt-4 mr-5" />
+                <div className=" absolute top-0 right-0 cursor-pointer" onClick={() => setWishlistToggle(!wishlistToggle)}>
+                  <img src={wishlistToggle ? heart_filled : heart_outline} className="w-[25px] mt-4 mr-5" />
                 </div>
                 <div className="">
                   <div>
-                    <Link to='/product-details' ><img src={data?.image} alt="" /></Link>
+                    <Link to='/product-details' ><img src={import.meta.env.VITE_APP_BASE_API_LINK + data?.image} alt="" /></Link> 
                   </div>
                   <button className="bg-[#3EDCFF] w-full p-2 md:p-3 text-[16px] md:text-[1.5rem] text-white tracking-[1px] md:tracking-[3px]">
                     ADD TO CART
