@@ -75,7 +75,7 @@ function App() {
           <Route path="/" element={<LandingPage />} />
           {/* <Route path="/" element /> */}
           <Route path="*" element={<Navigate replace to='/' />} />
-          <Route path="/product-details" element={<Productpage />} />
+          <Route path="/product-details/:product_id" element={<Productpage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/account" element={<MyAccount />} />

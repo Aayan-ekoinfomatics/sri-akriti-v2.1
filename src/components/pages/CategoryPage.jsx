@@ -10,11 +10,16 @@ import filter from "../../assets/icons/filter.svg";
 import { Link, useParams } from "react-router-dom";
 import categoriesApiAtom from "../../recoil/atoms/products/categoriesApiAtom";
 import { useRecoilState } from "recoil";
+import singleProductApiAtom from "../../recoil/atoms/products/singleProductApiAtom";
+import axios from "axios";
+
 
 const CategoryPage = () => {
   const [searchItem, setSearchItem] = useState("");
 
   const [categoryApiData, setCategoryApiData] = useRecoilState(categoriesApiAtom);
+
+  const [productApi, setProductApi] = useRecoilState(singleProductApiAtom)
 
   const [sortToggle, setSortToggle] = useState(false);
   const [wishlistToggle, setWishlistToggle] = useState(false);
@@ -44,6 +49,15 @@ const CategoryPage = () => {
   // useEffect(() => {
   //   console.log(categoryApiData?.products)
   // }, [categoryApiData ])
+
+  useEffect(() => {
+    let formdata = new FormData();
+          // formdata.append("id", data?.id);
+          formdata.append("title", params?.category_id);
+          axios.post(import.meta.env.VITE_APP_BASE_API_LINK + 'categoryPage' + '?lauda=' + params?.category_id  ,formdata).then((response) => setCategoryApiData(response?.data))
+    console.log(params)
+  }, [params])
+  
   
 
   const handleClick = () => {
@@ -54,41 +68,119 @@ const CategoryPage = () => {
   return (
     <div>
       <div className="w-full pb-[100px]">
-        {categoryApiData?.category === "COLLECTION" ? (
-          <>
-            <h1 className="text-center text-[30px] md:text-[3.438rem] lora font-semibold py-8 pt-16 uppercase">
-              {/* {params.category_id} */}
-              {categoryApiData?.category}
-            </h1>
-            <div className="w-full hidden md:block md:w-[43%] lg:w-[33%] mx-auto pt-10 pb-20">
-              <div className=" border mt-5 flex w-[90%]  border-[#69696959] mx-auto ">
-                <input
-                  type="text"
-                  className="w-full outline-none px-5 py-3 text-[15px] lg:text-[18px] font-[300] poppins tracking-[2px] bg-[#b0b0b00a]"
-                  placeholder="Seach your type of Platinum"
-                  onChange={(e) => setSearchItem(e.target.value)}
-                  value={searchItem}
-                />
-                <img src={search} className="w-[35px] mx-2 px-1" />
+      {categoryApiData?.category === "COLLECTION" ? (
+            <>
+              <h1 className="text-center text-[30px] md:text-[3.438rem] lora font-semibold py-8 pt-16 uppercase">
+                {/* {params.category_id} */}
+                {categoryApiData?.category}
+              </h1>
+              <div className="w-full hidden md:block md:w-[43%] lg:w-[33%] mx-auto pt-10 pb-20">
+                <div className=" border mt-5 flex w-[90%]  border-[#69696959] mx-auto ">
+                  <input
+                    type="text"
+                    className="w-full outline-none px-5 py-3 text-[15px] lg:text-[18px] font-[300] poppins tracking-[2px] bg-[#b0b0b00a]"
+                    placeholder="Seach your type of Platinum"
+                    onChange={(e) => setSearchItem(e.target.value)}
+                    value={searchItem}
+                  />
+                  <img src={search} className="w-[35px] mx-2 px-1" />
+                </div>
               </div>
-            </div>
-          </>
-        ) : (
-          <>
-            <div className="flex bg-white px-10 md:py-10">
-              <div className="w-full text-center md:text-left md:w-[60%] sm:p-3 mb-10 md:p-6 md:py-20">
-                <h1 className="lora text-[28px] md:text-[45px] tracking-[1px] font-[600] my-5 md:my-16 w-full">
-                  {categoryApiData?.category}
-                </h1>
-                <p className="poppins text-[12px] md:text-[14px] tracking-[2px] my-5 md:my-16 w-full">
-                  {categoryApiData?.category_details}
-                </p>
+            </>
+          ) : (
+            <>
+              <div className="flex bg-white px-10 md:py-10">
+                <div className="w-full text-center md:text-left md:w-[60%] sm:p-3 mb-10 md:p-6 md:py-20">
+                  <h1 className="lora text-[28px] md:text-[45px] tracking-[1px] font-[600] my-5 md:my-16 w-full">
+                    {categoryApiData?.category}
+                  </h1>
+                  <p className="poppins text-[12px] md:text-[14px] tracking-[2px] my-5 md:my-16 w-full">
+                    {categoryApiData?.category_details}
+                  </p>
+                </div>
+                <div className='hidden md:block w-[40%] bg-cover bg-no-repeat bg-bottom' style={{ backgroundImage: `url(${import.meta.env.VITE_APP_BASE_API_LINK + categoryApiData?.category_image})` }} ></div>
+                
               </div>
-              <div className='hidden md:block w-[40%] bg-cover bg-no-repeat bg-bottom' style={{ backgroundImage: `url(${import.meta.env.VITE_APP_BASE_API_LINK + categoryApiData?.category_image})` }} ></div>
-              
-            </div>
-          </>
-        )}
+            </>
+          )}
+          
+        {/* { !categoryApiData == null ?
+        <>
+          {categoryApiData?.category === "COLLECTION" ? (
+            <>
+              <h1 className="text-center text-[30px] md:text-[3.438rem] lora font-semibold py-8 pt-16 uppercase">
+                {params.category_id}
+                {categoryApiData?.category}
+              </h1>
+              <div className="w-full hidden md:block md:w-[43%] lg:w-[33%] mx-auto pt-10 pb-20">
+                <div className=" border mt-5 flex w-[90%]  border-[#69696959] mx-auto ">
+                  <input
+                    type="text"
+                    className="w-full outline-none px-5 py-3 text-[15px] lg:text-[18px] font-[300] poppins tracking-[2px] bg-[#b0b0b00a]"
+                    placeholder="Seach your type of Platinum"
+                    onChange={(e) => setSearchItem(e.target.value)}
+                    value={searchItem}
+                  />
+                  <img src={search} className="w-[35px] mx-2 px-1" />
+                </div>
+              </div>
+            </>
+          ) : (
+            <>
+              <div className="flex bg-white px-10 md:py-10">
+                <div className="w-full text-center md:text-left md:w-[60%] sm:p-3 mb-10 md:p-6 md:py-20">
+                  <h1 className="lora text-[28px] md:text-[45px] tracking-[1px] font-[600] my-5 md:my-16 w-full">
+                    {categoryApiData?.category}
+                  </h1>
+                  <p className="poppins text-[12px] md:text-[14px] tracking-[2px] my-5 md:my-16 w-full">
+                    {categoryApiData?.category_details}
+                  </p>
+                </div>
+                <div className='hidden md:block w-[40%] bg-cover bg-no-repeat bg-bottom' style={{ backgroundImage: `url(${import.meta.env.VITE_APP_BASE_API_LINK + categoryApiData?.category_image})` }} ></div>
+                
+              </div>
+            </>
+          )}
+        </>
+        :
+        <>
+          {collection_data?.category === "COLLECTION" ? (
+            <>
+              <h1 className="text-center text-[30px] md:text-[3.438rem] lora font-semibold py-8 pt-16 uppercase">
+                {params.category_id}
+                {collection_data?.category}
+              </h1>
+              <div className="w-full hidden md:block md:w-[43%] lg:w-[33%] mx-auto pt-10 pb-20">
+                <div className=" border mt-5 flex w-[90%]  border-[#69696959] mx-auto ">
+                  <input
+                    type="text"
+                    className="w-full outline-none px-5 py-3 text-[15px] lg:text-[18px] font-[300] poppins tracking-[2px] bg-[#b0b0b00a]"
+                    placeholder="Seach your type of Platinum"
+                    onChange={(e) => setSearchItem(e.target.value)}
+                    value={searchItem}
+                  />
+                  <img src={search} className="w-[35px] mx-2 px-1" />
+                </div>
+              </div>
+            </>
+          ) : (
+            <>
+              <div className="flex bg-white px-10 md:py-10">
+                <div className="w-full text-center md:text-left md:w-[60%] sm:p-3 mb-10 md:p-6 md:py-20">
+                  <h1 className="lora text-[28px] md:text-[45px] tracking-[1px] font-[600] my-5 md:my-16 w-full">
+                    {collection_data?.category}
+                  </h1>
+                  <p className="poppins text-[12px] md:text-[14px] tracking-[2px] my-5 md:my-16 w-full">
+                    {collection_data?.category_details}
+                  </p>
+                </div>
+                <div className='hidden md:block w-[40%] bg-cover bg-no-repeat bg-bottom' style={{ backgroundImage: `url(${collection_data?.category_image})` }} ></div>
+                
+              </div>
+            </>
+          )}
+        </>
+        } */}
 
         {/* filter mobile */}
         <div
@@ -294,7 +386,8 @@ const CategoryPage = () => {
           </div>
 
           {/* products */}
-          <div className="flex-1 grid gap-[8px] md:gap-8 grid-cols-2 lg:grid-cols-3 p-2">
+          {/* { categoryApi == null  ?
+            <div className="flex-1 grid gap-[8px] md:gap-8 grid-cols-2 lg:grid-cols-3 p-2">
             {categoryApiData?.products?.map((data, i) => (
               <div className="relative my-2" key={i}>
                 <div className=" absolute top-0 right-0 cursor-pointer" onClick={() => setWishlistToggle(!wishlistToggle)}>
@@ -303,6 +396,65 @@ const CategoryPage = () => {
                 <div className="">
                   <div>
                     <Link to='/product-details' ><img src={import.meta.env.VITE_APP_BASE_API_LINK + data?.image} alt="" /></Link> 
+                  </div>
+                  <button className="bg-[#3EDCFF] w-full p-2 md:p-3 text-[16px] md:text-[1.5rem] text-white tracking-[1px] md:tracking-[3px]">
+                    ADD TO CART
+                  </button>
+                  <p className="font-[500] poppins text-[0.95rem] md:text-[1.438rem] tracking-[2px] pl-1">
+                    ₹{data?.price}
+                  </p>
+                  <p className="font-[300] poppins text-[0.9rem] md:text-[1.438rem] tracking-[1.4px] pl-1">
+                    {data?.product_name}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+          :
+          <div className="flex-1 grid gap-[8px] md:gap-8 grid-cols-2 lg:grid-cols-3 p-2">
+            {collection_data?.products?.map((data, i) => (
+              <div className="relative my-2" key={i}>
+                <div className=" absolute top-0 right-0 cursor-pointer" onClick={() => setWishlistToggle(!wishlistToggle)}>
+                  <img src={wishlistToggle ? heart_filled : heart_outline} className="w-[25px] mt-4 mr-5" />
+                </div>
+                <div className="">
+                  <div>
+                    <Link to='/product-details' ><img src={data?.image} alt="" /></Link> 
+                  </div>
+                  <button className="bg-[#3EDCFF] w-full p-2 md:p-3 text-[16px] md:text-[1.5rem] text-white tracking-[1px] md:tracking-[3px]">
+                    ADD TO CART
+                  </button>
+                  <p className="font-[500] poppins text-[0.95rem] md:text-[1.438rem] tracking-[2px] pl-1">
+                    ₹{data?.price}
+                  </p>
+                  <p className="font-[300] poppins text-[0.9rem] md:text-[1.438rem] tracking-[1.4px] pl-1">
+                    {data?.product_name}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+          } */}
+          <div className="flex-1 grid gap-[8px] md:gap-8 grid-cols-2 lg:grid-cols-3 p-2">
+            {categoryApiData?.products?.map((data, i) => (
+              <div className="relative my-2" key={i}>
+                <div className=" absolute top-0 right-0 cursor-pointer" onClick={() => setWishlistToggle(!wishlistToggle)}>
+                  <img src={wishlistToggle ? heart_filled : heart_outline} className="w-[25px] mt-4 mr-5" />
+                </div>
+                <div className="">
+                  <div 
+                  //   onClick={() => {
+                  //   let formdata = new FormData();
+                  //   formdata.append("id", data?.id);
+                  //   formdata.append("title", data?.product_name);
+  
+                  //   axios.post(import.meta.env.VITE_APP_BASE_API_LINK + 'productPage' + '?lauda=' + data?.product_name  , formdata).then((response) => setProductApi(response?.data))
+                  // }}
+                  >
+                    <Link 
+                    // to={'/product-details/' + '?' + data?.product_name}
+                    to='/product-details/:category_id'  
+                     ><img src={import.meta.env.VITE_APP_BASE_API_LINK + data?.image} alt="" /></Link> 
                   </div>
                   <button className="bg-[#3EDCFF] w-full p-2 md:p-3 text-[16px] md:text-[1.5rem] text-white tracking-[1px] md:tracking-[3px]">
                     ADD TO CART

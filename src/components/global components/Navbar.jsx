@@ -64,14 +64,15 @@ const Navbar = () => {
           {navApiData?.slice(0, 7)?.map((data, i) => (
             <div className="" key={i} onMouseLeave={() => setNavHoverShow(null)}>
               <NavLink
+              // to={'/single-category/' + data?.title}
                 to={data?.routes}
-                onClick={() => {
-                  let formdata = new FormData();
-                  formdata.append("id", data?.id);
-                  formdata.append("title", data?.title);
+                // onClick={() => {
+                //   let formdata = new FormData();
+                //   formdata.append("id", data?.id);
+                //   formdata.append("title", data?.title);
 
-                  axios.post(import.meta.env.VITE_APP_BASE_API_LINK + 'categoryPage' , formdata).then((response) => setCategoryApiData(response?.data))
-                }}
+                //   axios.post(import.meta.env.VITE_APP_BASE_API_LINK + 'categoryPage' + '?lauda=' + data?.title  ,formdata).then((response) => setCategoryApiData(response?.data))
+                // }}
                 onMouseEnter={() => setNavHoverShow(data?.title)} 
                 // className={({ isActive }) =>
                 //   isActive

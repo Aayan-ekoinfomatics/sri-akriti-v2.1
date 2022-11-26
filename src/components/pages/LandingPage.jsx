@@ -37,10 +37,10 @@ const LandingPage = () => {
       });
   }, []);
   
-    // useEffect(() => {
-    //   console.log('API DATA')
-    //   console.log(mobileNav);
-    // }, [mobileNav])
+    useEffect(() => {
+      console.log('API DATA')
+      console.log(mobileNav);
+    }, [mobileNav])
     
 
   return (
@@ -48,25 +48,70 @@ const LandingPage = () => {
       <div className="w-full mx-auto">
         {/* desktop view */}
         <div className="w-[93%] hidden md:flex justify-around mt-[-25px] pb-[42px]">
-          <div className="w-[8%] flex justify-center items-end pb-[200px]">
-            <img src={arrow} className="" />
-          </div>
-          <div className="hidden flex-[0.9] md:flex items-center">
-            <div className="flex w-[47%] flex-col justify-between items-center ">
-              <div className="flex flex-1 flex-col items-start my-20 w-[80%] lora font-[16px] text-[#696969] text-[35px] leading-tight">
-                <div>
-                  <p>{first_section?.section_data?.section_title?.first}</p>
-                  <p>{first_section?.section_data?.section_title?.second}</p>
-                  <p>{first_section?.section_data?.section_title?.third}</p>
+            <div className="w-[8%] flex justify-center items-end pb-[200px]">
+              <img src={arrow} className="" />
+            </div>
+            <div className="hidden flex-[0.9] md:flex items-center">
+              <div className="flex w-[47%] flex-col justify-between items-center ">
+                <div className="flex flex-1 flex-col items-start my-20 w-[80%] lora font-[16px] text-[#696969] text-[35px] leading-tight">
+                  <div>
+                    <p>{first_section?.section_data?.section_title?.first}</p>
+                    <p>{first_section?.section_data?.section_title?.second}</p>
+                    <p>{first_section?.section_data?.section_title?.third}</p>
+                  </div>
                 </div>
+                <div className="w-[45rem] flex-1 font-golden_signature overflow-auto text-[140px] text-[#3EDCFF] translate-x-[240px] translate-y-[100px]">{first_section?.section_data?.section_sub_title}</div>
               </div>
-              <div className="w-[45rem] flex-1 font-golden_signature overflow-auto text-[140px] text-[#3EDCFF] translate-x-[240px] translate-y-[100px]">{first_section?.section_data?.section_sub_title}</div>
-            </div>
-            <div className=" w-[53%]">
-              <img src={ import.meta.env.VITE_APP_BASE_API_LINK + landingApiData?.first_section?.section_image} className="w-[1500px]" /> 
+              <div className=" w-[53%]">
+                <img src={ import.meta.env.VITE_APP_BASE_API_LINK + landingApiData?.first_section?.section_image} className="w-[1500px]" /> 
+              </div>
             </div>
           </div>
-        </div>
+        {  landingApiData == null ?
+          // <div className="w-[93%] hidden md:flex justify-around mt-[-25px] pb-[42px]">
+          //   <div className="w-[8%] flex justify-center items-end pb-[200px]">
+          //     <img src={arrow} className="" />
+          //   </div>
+          //   <div className="hidden flex-[0.9] md:flex items-center">
+          //     <div className="flex w-[47%] flex-col justify-between items-center ">
+          //       <div className="flex flex-1 flex-col items-start my-20 w-[80%] lora font-[16px] text-[#696969] text-[35px] leading-tight">
+          //         <div>
+          //           <p>{first_section?.section_data?.section_title?.first}</p>
+          //           <p>{first_section?.section_data?.section_title?.second}</p>
+          //           <p>{first_section?.section_data?.section_title?.third}</p>
+          //         </div>
+          //       </div>
+          //       <div className="w-[45rem] flex-1 font-golden_signature overflow-auto text-[140px] text-[#3EDCFF] translate-x-[240px] translate-y-[100px]">{first_section?.section_data?.section_sub_title}</div>
+          //     </div>
+          //     <div className=" w-[53%]">
+          //       <img src={ import.meta.env.VITE_APP_BASE_API_LINK + landingApiData?.first_section?.section_image} className="w-[1500px]" /> 
+          //     </div>
+          //   </div>
+          // </div>
+          ""
+          :
+          // <div className="w-[93%] hidden md:flex justify-around mt-[-25px] pb-[42px]">
+          //   <div className="w-[8%] flex justify-center items-end pb-[200px]">
+          //     <img src={arrow} className="" />
+          //   </div>
+          //   <div className="hidden flex-[0.9] md:flex items-center">
+          //     <div className="flex w-[47%] flex-col justify-between items-center ">
+          //       <div className="flex flex-1 flex-col items-start my-20 w-[80%] lora font-[16px] text-[#696969] text-[35px] leading-tight">
+          //         <div>
+          //           <p>{first_section?.section_data?.section_title?.first}</p>
+          //           <p>{first_section?.section_data?.section_title?.second}</p>
+          //           <p>{first_section?.section_data?.section_title?.third}</p>
+          //         </div>
+          //       </div>
+          //       <div className="w-[45rem] flex-1 font-golden_signature overflow-auto text-[140px] text-[#3EDCFF] translate-x-[240px] translate-y-[100px]">{first_section?.section_data?.section_sub_title}</div>
+          //     </div>
+          //     <div className=" w-[53%]">
+          //       <img src={first_section?.section_data?.section_image} className="w-[1500px]" /> 
+          //     </div>
+          //   </div>
+          // </div>
+          ''
+        }
 
         {/* mobile view */}
         <div className="md:hidden">

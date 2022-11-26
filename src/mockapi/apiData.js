@@ -37,9 +37,9 @@ const collection_data = {
     { title: 'Date, old to new' },
     { title: 'Date, new to old' },
   ],
-  // category: "ALL COLLECTION",
+  category: "ALL COLLECTION",
   // category: "NECKLACE",
-  category: "RINGS",  
+  // category: "RINGS",
   // category: "EARRINGS",
   // category: "BRACELETS",
 

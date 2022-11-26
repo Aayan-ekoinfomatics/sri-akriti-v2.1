@@ -9,9 +9,13 @@ import arrow from "../../assets/icons/arrow.svg";
 // import { data } from "autoprefixer";
 import product_details from "../../mockapi/singleProductPageApi";
 import collection_data from "../../mockapi/apiData";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 const Productpage = () => {
+
+  const params = useParams();
+
+
   return (
     <>
       <div className="md:flex gap-5 w-[95%] mx-auto ">
@@ -23,6 +27,7 @@ const Productpage = () => {
                 <h1 className="poppins leading-[1px] cursor-pointer" key={i}>{data?.link_name} {product_details?.product[0]?.breadcrumbs?.length === i + 1 ? '' : <span>/</span>} </h1>
               ))
             }
+            {/* {params?.product_id} */}
           </div>
           <div className="w-[95%] mx-auto object-cover mb-2 md:flex gap-1 justify-center items-center md:pb-16 md:pr-12 lg:pb-24 lg:pr-24">
             {/* mobile slider */}
