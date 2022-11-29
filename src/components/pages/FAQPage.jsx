@@ -1,10 +1,13 @@
 import React from 'react'
 import { useState } from 'react'
+import img from '../../assets/icons/dropdown-arrow.svg'
+import img_up from '../../assets/icons/Arrow-up.svg'
 import faq_page from '../../mockapi/faqPageApi';
 
 const FAQPage = () => {
 
     const [ faqToggle, setFaqToggle ] = useState(null);
+    const [ arrowToggle, setArrowToggle ] = useState(null);
 
 
   return (
@@ -15,7 +18,7 @@ const FAQPage = () => {
             {
                 faq_page?.section_data?.map((data, i) => (
                     <div className='py-4 my-2' key={i}>
-                        <h1 className='poppins border-b pb-5 mb-2 border-b-[#69696954] text-[18px] tracking-[1px]' >{data?.title}</h1>
+                        <h1 className='poppins border-b pb-5 mb-2 border-b-[#69696954] text-[18px] tracking-[2px]' >{data?.title}</h1>
                         {
                             data?.question_data?.map((question, index) => (
                                 <div className='' key={index}>
@@ -25,9 +28,14 @@ const FAQPage = () => {
                                         }else {
                                             setFaqToggle(question?.question)
                                         }
+                                        if (arrowToggle == index) {
+                                            setArrowToggle(null);
+                                        }else {
+                                            setArrowToggle(index);
+                                        }
                                         }}
-                                        className='poppins text-[12px] tracking-[1px] p-2 cursor-pointer'
-                                        > - {question?.question}</h1>
+                                        className='poppins text-[12px] tracking-[1px] p-2 cursor-pointer flex items-center gap-3'
+                                        > <span><img src={ arrowToggle === index ? img_up : img} className={`min-w-[8px] max-w-[10px]`} /></span> {question?.question}</h1>
                                     <div className={`bg-transparent flex justify-center items-center text-left pl-3 mb-2 transition-all duration-300 overflow-y-scroll ${faqToggle === question?.question ? 'h-[100px] ease-in' : 'h-0 ease-out border-none'}`}>
                                         <h1 className='poppins text-[10px] tracking-[1px]'>{question?.answer}</h1>
                                     </div>
