@@ -82,13 +82,13 @@ const Navbar = () => {
               >
                 <li className="cursor-pointer group flex flex-col w-full py-5 pb-14">
                   {" "}
-                  <p className="uppercase">{data?.title}</p>
+                  <p className="uppercase poppins font-[300]">{data?.title}</p>
                   <span className={`h-[1px] max-w-0 group-hover:max-w-full transition-all duration-300 bg-black ${navHoverShow === data?.title ? 'max-w-full' : 'max-w-0'}`}></span>
                 </li>
               </NavLink>
                   { data?.sub && data?.sub_sub &&
                     <div onMouseEnter={() => setNavHoverShow(data?.title)}  className={`hidden absolute right-0 left-0 top-[100%] md:flex justify-center items-center w-full transition-all duration-300 overflow-hidden bg-white ${navHoverShow === data?.title ? ' h-[300px] ease-in' : 'h-0 ease-out'} `} >
-                          <div className="w-[90%] mx-auto flex justify-evenly ">
+                          <div className="w-[90%] mx-auto flex justify-evenly">
                               { 
                                 data?.sub?.map((datas, index) => (
                                   <div className="" key={index}>

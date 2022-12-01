@@ -74,17 +74,17 @@ const ThirdSection = () => {
 
 
       {/* mobile view */}
-      <div className="md:hidden">
+      <div className="md:hidden"> 
         <h1 className="lora text-[#231F20] text-[20px] py-4 pl-4 font-[500] italic">
           See our suggestions
         </h1>
-            {
-              third_section?.section_data?.map((data, i) => (
+          {
+            third_section?.section_data?.map((data, i) => (
                 <div className="px-3 py-1" key={i} >
                   <img src={data?.image} className="w-full" />
                 </div>
-              ))
-            }
+            ))
+          }
         {/* {
           !landingApiData == null ?
           <>
