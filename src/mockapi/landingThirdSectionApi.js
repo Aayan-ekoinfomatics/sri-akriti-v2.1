@@ -6,12 +6,12 @@ const third_section = {
         {
             title: 'NECKLESS COLLECTIONS',
             image: chain,
-            route: '/single-category/neckless',
+            route: '/single-category/NECKLACE',
         },
         {
             title: 'BRACELET COLLECTIONS',
             image: bracelet,
-            route: '/single-category/bracelet'
+            route: '/single-category/BRACELET'
         },
     ]
 };

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import reactLogo from "./assets/react.svg";
+import reactLogo from "./assets/react.svg";  
 import {
   BrowserRouter as Router,
   Routes,
@@ -75,7 +75,7 @@ function App() {
           <Route path="/" element={<LandingPage />} />
           {/* <Route path="/" element /> */}
           <Route path="*" element={<Navigate replace to='/' />} />
-          <Route path="/product-details/:product_id" element={<Productpage />} />
+          <Route path="/product-details/:product_id" element={<Productpage />} />   
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/account" element={<MyAccount />} />

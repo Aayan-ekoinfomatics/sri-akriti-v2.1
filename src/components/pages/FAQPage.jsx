@@ -28,7 +28,7 @@ const FAQPage = () => {
                                         }else {
                                             setFaqToggle(question?.question)
                                         }
-                                        if (arrowToggle == index) {
+                                        if (arrowToggle === index) {
                                             setArrowToggle(null);
                                         }else {
                                             setArrowToggle(index);

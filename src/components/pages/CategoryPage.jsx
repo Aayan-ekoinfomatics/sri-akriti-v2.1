@@ -15,6 +15,7 @@ import axios from "axios";
 
 
 const CategoryPage = () => {
+
   const [searchItem, setSearchItem] = useState("");
 
   const [categoryApiData, setCategoryApiData] = useRecoilState(categoriesApiAtom);
@@ -54,8 +55,9 @@ const CategoryPage = () => {
     let formdata = new FormData();
     // formdata.append("id", data?.id);
     formdata.append("title", params?.category_id);
-    axios.post(import.meta.env.VITE_APP_BASE_API_LINK + 'categoryPage' + '?lauda=' + params?.category_id  ,formdata).then((response) => setCategoryApiData(response?.data))
-    console.log(params)
+    axios.post(import.meta.env.VITE_APP_BASE_API_LINK + 'categoryPage' + '?lauda=' + params?.category_id  ,formdata).then((response) => setCategoryApiData(response?.data)
+    )
+    // console.log(response?.data)
   }, [params])
   
   
@@ -89,8 +91,10 @@ const CategoryPage = () => {
             </>
           ) : (
             <>
-              <div className="w-full bg-white bg-cover bg-no-repeat bg-center " style={{ backgroundImage: `url(${import.meta.env.VITE_APP_BASE_API_LINK + categoryApiData?.category_image})` }}>
-                <div className="w-full text-center md:text-left sm:p-3 mb-10 md:p-6 md:py-32 bg-black bg-opacity-20">
+              <div className={`w-full bg-white bg-cover bg-no-repeat bg-center`} 
+              style={{ backgroundImage: `url(${import.meta.env.VITE_APP_BASE_API_LINK + categoryApiData?.category_image})` }}
+              >
+                <div className="w-full text-center py-8 md:text-left sm:p-3 mb-10 md:p-6 md:py-32 bg-black bg-opacity-60 md:bg-opacity-20">
                   <h1 className="lora text-[28px] md:text-[45px] tracking-[1px] font-[600] my-5 md:my-16 pl-10 w-full">
                     {categoryApiData?.category}
                   </h1>

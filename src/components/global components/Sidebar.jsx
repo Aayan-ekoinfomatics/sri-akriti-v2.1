@@ -35,7 +35,7 @@ const Sidebar = () => {
       {/* <div className="w-full h-[10px]"></div> */}
       <div className="w-full">
         <ul className="w-full">
-          {navApiData?.map((data, i) => (
+          {nav_data?.map((data, i) => (
             <div key={i}>
               <div 
                 // to={data?.route}

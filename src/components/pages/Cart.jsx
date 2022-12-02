@@ -67,7 +67,7 @@ const Cart = () => {
               <h1 className="text-[13px] md:text-[16px] tracking-[2px]">{card_data?.checkout_data?.total?.title}</h1>
               <h1 className="text-[13px] md:text-[16px] font-[400]">₹ {card_data?.checkout_data?.total?.amount}</h1>
           </div>
-          <div className="w-[90%] mx-auto py-3">
+          <div className="w-[100%] mx-auto py-3">
           <Link to=''><button className="w-full p-4 poppins tracking-[3px] text-[14px] bg-black text-white">{card_data?.checkout_data?.checkout_button}</button></Link>
           </div>
         </div>

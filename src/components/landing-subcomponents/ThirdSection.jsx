@@ -65,7 +65,7 @@ const ThirdSection = () => {
               </h1>
             </div>
             <div className="w-full group-hover:translate-x-8 z-[200] transition-all ">
-              <NavLink to='/single-category/neckless' ><img src={data?.image} className="w-full " /></NavLink>
+              <NavLink to={data?.route} ><img src={data?.image} className="w-full " /></NavLink>
             </div>
           </div>
             ))
