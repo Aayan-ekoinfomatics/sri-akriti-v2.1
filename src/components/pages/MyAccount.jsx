@@ -14,7 +14,7 @@ const MyAccount = () => {
         {/* first sub-main flex item */}
         <div className='md:w-[50%] md:flex flex-col justify-between md:pb-4' >
             {/* my Orders */}
-            <div className='w-full bg-[#E3E3E3] my-4 py-2 mx-10 md:max-h-[180px] overflow-y-scroll'>
+            <div className='w-full bg-[#E3E3E3] my-4 py-2 mx-10 md:max-h-[155px] overflow-y-scroll'>
             <div className="w-[90%] mx-auto flex justify-between py-2 lora text-[15px]">
                 <h1 className="font-[500]">{profile_data?.my_orders?.header?.heading}</h1>
                 <Link to='/orders' className="tracking-[2px]">{profile_data?.my_profile?.header?.sub_heading}</Link>
@@ -31,7 +31,7 @@ const MyAccount = () => {
             </div>
 
             {/* wishlist */}
-            <div className='w-full bg-[#E3E3E3] my-4 py-2 mx-10 md:max-h-[180px] overflow-y-scroll'>
+            <div className='w-full bg-[#E3E3E3] my-4 py-2 mx-10 md:max-h-[155px] overflow-y-scroll'>
             <div className="w-[90%] mx-auto flex justify-between py-2 lora text-[15px]">
                 <h1 className="font-[500]">{profile_data?.wishlist?.header?.heading}</h1>
                 <Link to='/wishlist' className="tracking-[2px]">{profile_data?.my_profile?.header?.sub_heading}</Link>
@@ -48,7 +48,7 @@ const MyAccount = () => {
             </div>
 
             {/* card desktop*/}
-            <div className="w-full px-3 bg-[#E3E3E3] my-4 mx-10 py-2 md:my-0 hidden md:block md:max-h-[180px] overflow-y-scroll">
+            <div className="w-full px-3 bg-[#E3E3E3] my-4 mx-10 py-2 md:my-0 hidden md:block md:max-h-[155px] overflow-y-scroll">
                 <div className="w-[95%] mx-auto flex justify-between py-2 lora text-[15px]">
                     <h1 className="font-[500]">{profile_data?.card?.header?.heading}</h1>
                     <h1 className="tracking-[2px]">{profile_data?.card?.header?.sub_heading}</h1>
@@ -92,7 +92,7 @@ const MyAccount = () => {
             </div>
 
             {/* address */}
-            <div className='w-full bg-[#E3E3E3] my-4 py-2 px-4 md:px-0 md:max-h-[180px] overflow-y-scroll'>
+            <div className='w-full bg-[#E3E3E3] my-4 py-2 px-4 md:px-0 md:max-h-[155px] overflow-y-scroll'>
                 <div className="w-[95%] mx-auto flex justify-between md:px-3 py-2 lora text-[14px] mb-4">
                     <h1 className="font-[500]">{profile_data?.address?.header?.heading}</h1>
                     <Link to='/add-address' className="tracking-[2px]">{profile_data?.address?.header?.sub_heading}</Link>
