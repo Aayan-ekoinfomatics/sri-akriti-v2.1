@@ -177,7 +177,7 @@ const Navbar = () => {
                       </li>
 
                     </NavLink>
-                    {data?.sub && data?.sub_sub &&
+                    {/* {data?.sub && data?.sub_sub &&
                       <div onMouseEnter={() => setNavHoverShow(data?.title)} className={` absolute right-0 left-0 top-[100%] md:flex justify-center items-center w-full transition-all duration-300 overflow-hidden bg-white ${navHoverShow === data?.title ? ' h-[300px] ease-in' : 'h-0 ease-out'} `} >
                         <div className="w-[90%] mx-auto flex justify-evenly">
                           {
@@ -194,7 +194,7 @@ const Navbar = () => {
                           }
                         </div>
                       </div>
-                    }
+                    } */}
                     <div className={`absolute flex flex-col gap-2 top-[80%] right-[14%] w-[280px] bg-white shadow-sm overflow-hidden transition-all duration-100 ${navHoverShow === "ACCOUNT" ? 'h-[165px] py-2' : 'h-0'}`}>
                       <NavLink to='/account' className="py-2 w-[90%] px-4 mx-auto flex justify-between items-center hover:bg-[#69696950]">
                         <p className="poppins text-[15px]">My Profile</p>
@@ -228,7 +228,7 @@ const Navbar = () => {
                       </li>
 
                     </NavLink>
-                    {data?.sub && data?.sub_sub &&
+                    {/* {data?.sub && data?.sub_sub &&
                       <div onMouseEnter={() => setNavHoverShow(data?.title)} className={`absolute right-0 left-0 top-[100%] md:flex justify-center items-center w-full transition-all duration-300 overflow-hidden bg-white ${navHoverShow === data?.title ? ' h-[300px] ease-in' : 'h-0 ease-out'} `} >
                         <div className="w-[90%] mx-auto flex justify-evenly">
                           {
@@ -245,7 +245,7 @@ const Navbar = () => {
                           }
                         </div>
                       </div>
-                    }
+                    } */}
                   </div>
               })}
 
@@ -259,8 +259,8 @@ const Navbar = () => {
               null
             }
             <NavLink className={`min-w-[14px] lg:min-w-[18px]`} to='/cart' ><img src={cart} className="w-[16px] lg:w-[25px]" /></NavLink>
-            <img src={search} className="w-[16px] lg:w-[25px] cursor-pointer" onClick={() => setSearchToggle(!searchToggle)} />
-            <div className={`absolute transition-all bg-white ${searchToggle ? 'w-[390px] border border-[#696969b6] ease-in' : 'w-0 ease-out overflow-hidden'} top-[19%] right-[5%]`}>
+            <img src={search} className={`w-[16px] lg:w-[25px] cursor-pointer ${ localStorage.getItem("status") === 'true' ? 'ml-0' : 'ml-8' }`} onClick={() => setSearchToggle(!searchToggle)} />
+            <div className={`absolute transition-all bg-white ${searchToggle ? 'w-[390px] border border-[#696969b6] ease-in' : 'w-0 ease-out overflow-hidden'} top-[19%] right-[6%]`}>
               <input type="search" className="w-full p-2 outline-none" />
             </div>
           </div>

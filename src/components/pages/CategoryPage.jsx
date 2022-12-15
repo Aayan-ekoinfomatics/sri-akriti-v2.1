@@ -47,16 +47,15 @@ const CategoryPage = () => {
     }
   });
 
-  // useEffect(() => {
-  //   console.log(categoryApiData?.products)
-  // }, [categoryApiData ])
+  useEffect(() => {
+    console.log(categoryApiData)
+  }, [categoryApiData ])
 
   useEffect(() => {
     let formdata = new FormData();
     // formdata.append("id", data?.id);
-    formdata.append("title", params?.category_id);
-    axios.post(import.meta.env.VITE_APP_BASE_API_LINK + 'categoryPage' + params?.category_id  ,formdata).then((response) => setCategoryApiData(response?.data)
-    )
+    formdata.append("category_name", params?.category_id);
+    axios.post(import.meta.env.VITE_APP_BASE_API_LINK + 'categoryPageNew' ,formdata).then((response) => setCategoryApiData(response?.data))
     // console.log(response?.data)
   }, [params])
   
@@ -69,7 +68,8 @@ const CategoryPage = () => {
   return (
     <div>
       <div className="w-full pb-[100px]">
-      {categoryApiData?.category === "COLLECTION" ? (
+      {
+        categoryApiData?.category === "COLLECTION" ? (
             <>
               <h1 className="text-center text-[30px] md:text-[3.438rem] lora font-semibold py-8 pt-16 uppercase">
                 {/* {params.category_id} */}
@@ -105,7 +105,8 @@ const CategoryPage = () => {
                 
               </div>
             </>
-          )}
+          )
+        }
           
         {/* { !categoryApi == null ?
         <>
@@ -202,12 +203,12 @@ const CategoryPage = () => {
                 <button
                   type="button"
                   onClick={() => setSortToggle(!sortToggle)}
-                  className="inline-flex w-full justify-center items-center gap-6"
+                  className="inline-flex w-full justify-center items-center gap-6 "
                   id="menu-button"
                   aria-expanded="true"
                   aria-haspopup="true"
                 >
-                  SORT
+                  
                   <span>
                     <img src={down_arrow} className="w-[75%] sm:w-full" />
                   </span>
@@ -441,8 +442,8 @@ const CategoryPage = () => {
             </div>
             } */}
 
-          <div className="flex-1 grid gap-[8px] md:gap-8 grid-cols-2 lg:grid-cols-3 p-2">
-            {categoryApiData?.products?.map((data, i) => (
+          <div className="flex-1 grid gap-[8px] md:gap-8 grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 p-2">
+            {categoryApiData?.map((data, i) => (
               <div className="relative my-2" key={i}>
                 <div className=" absolute top-0 right-0 cursor-pointer" onClick={() => {
                   if (wishlistToggle === i) {
@@ -465,17 +466,22 @@ const CategoryPage = () => {
                   >
                     <Link 
                     // to={'/product-details/' + '?' + data?.product_name}
-                    to='/product-details/:product_id'
+                    to={'/product-details' + '/' + data?.id}
                      ><img src={import.meta.env.VITE_APP_BASE_API_LINK + data?.image} alt="" /></Link> 
                   </div>
                   <button className="bg-[#3EDCFF] w-full p-2 md:p-3 text-[16px] md:text-[1.5rem] text-white tracking-[1px] md:tracking-[3px]">
                     ADD TO CART
                   </button>
-                  <p className="font-[500] poppins text-[0.95rem] md:text-[1.438rem] tracking-[2px] pl-1">
-                    ₹{data?.price}
+                  <div className="flex gap-2 items-center w-[70%]">
+                  <p className="font-[400] poppins text-[0.9rem] md:text-[19px] tracking-[1.4px] pl-1">
+                    ₹{data?.actual_price}
                   </p>
-                  <p className="font-[300] poppins text-[0.9rem] md:text-[1.438rem] tracking-[1.4px] pl-1">
-                    {data?.product_name}
+                  <p className="font-[300] poppins text-[0.95rem] md:text-[15px] tracking-[2px] pl-1 line-through">
+                    ₹{data?.selling_price}
+                  </p>
+                  </div>
+                  <p className="font-[300] poppins text-[0.9rem] md:text-[19px] tracking-[1.4px] pl-1">
+                    {data?.name}
                   </p>
                 </div>
               </div>

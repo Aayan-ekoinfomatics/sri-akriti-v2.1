@@ -2,7 +2,7 @@
     {
       "title": "EARING",
       "id": 0,
-      "routes": "/single-category/earing",
+      "routes": "/single-category/earings",
       "sub": [
           "SHOP BY STYLE",
           "SHOP FOR WHOM",
@@ -60,7 +60,7 @@
   {
       "title": "BRACELET",
       "id": 1,
-      "routes": "/single-category/bracelet",
+      "routes": "/single-category/bracelets",
       "sub": [
           "SHOP BY STYLE",
           "SHOP FOR WHOM",
@@ -114,7 +114,7 @@
   {
       "title": "RING",
       "id": 2,
-      "routes": "/single-category/ring",
+      "routes": "/single-category/rings",
       "sub": [
           "SHOP BY STYLE",
           "SHOP FOR WHOM",
@@ -172,7 +172,7 @@
   {
       "title": "NECKLACE",
       "id": 3,
-      "routes": "/single-category/necklace",
+      "routes": "/single-category/necklaces",
       "sub": [
           "SHOP BY STYLE",
           "SHOP FOR WHOM",

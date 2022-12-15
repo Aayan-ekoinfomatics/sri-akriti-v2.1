@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import chain from "../../assets/images/chain-1.png";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -10,11 +10,28 @@ import arrow from "../../assets/icons/arrow.svg";
 import product_details from "../../mockapi/singleProductPageApi";
 import collection_data from "../../mockapi/apiData";
 import { Link, useParams } from "react-router-dom";
+import { useRecoilState } from "recoil";
+import singleProductApiAtom from "../../recoil/atoms/products/singleProductApiAtom";
+import axios from "axios";
 
 const Productpage = () => {
 
   const params = useParams();
 
+  const [ productApiData, setProductApiData ] = useRecoilState(singleProductApiAtom);
+
+  useEffect(() => {
+    let formdata = new FormData();
+    // formdata.append("id", data?.id);
+    formdata.append("product_id", params?.product_id);
+    axios.post(import.meta.env.VITE_APP_BASE_API_LINK + 'productDetails' , formdata).then((response) => setProductApiData(response?.data))
+    // console.log(response?.data)
+  }, [params])
+  
+  useEffect(() => {
+    console.log(productApiData);
+  }, [productApiData])
+  
 
   return (
     <>
