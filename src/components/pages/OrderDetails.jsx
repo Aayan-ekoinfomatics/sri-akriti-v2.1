@@ -15,7 +15,7 @@ const OrderDetails = () => {
     return (
         <div className="w-[90%] md:w-[80%] mx-auto">
             <NavLink to='' onClick={() => navigate(-1)}><img src={arrow} className="w-[30px] pt-4" /></NavLink>
-            <h1 className="lora italic text-[22px] font-[500] text-center">
+            <h1 className="lora italic text-[28px] font-[500] text-center pt-5 pb-10">
                 Order Details
             </h1>
             <div className="w-full max-w-[1000px] mx-auto my-5 mt-8 md:mt-14 flex flex-col md:flex-row justify-evenly items-center gap-10 md:gap-5">

@@ -34,7 +34,7 @@ const profile_data = {
         ],
     },
     address: {
-        header: {heading: 'Address', sub_heading: 'add', edit: 'edit'},
+        header: {heading: 'Address', sub_heading: 'Add', edit: 'edit'},
         content: [
             {area: '1, 1 Ashish Shopping Centre, C G Road, Navrangpura', city: 'Ahmedabad, Gujrat', pincode: '380009'},
             {area: 'TV Complex, 2, 60 Feet Rd, KHB Colony, 6th Block, Koramangala, Bengaluru, Karnataka', city: 'Bangaluru, Karnataka', pincode: '560034'},
@@ -42,7 +42,7 @@ const profile_data = {
         ]
     },
     card: {
-        header: {heading: 'Cards', sub_heading: 'Edit'},
+        header: {heading: 'Cards', sub_heading: 'Add'},
         content: [
             {card_number: '4454-0213-4594-4523', name: 'Vicky Waelchi', cvv: '623', expiry: '12/2023' },
             {card_number: '4454-0213-4594-4523', name: 'Vicky Waelchi', cvv: '623', expiry: '12/2023' },

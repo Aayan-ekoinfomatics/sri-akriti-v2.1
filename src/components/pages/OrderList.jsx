@@ -58,10 +58,14 @@ const OrderList = () => {
                 <h1 className="text-[25px] md:text-[30px] lora italic font-[500] text-center">My Orders</h1>
             </div>
             <div className="w-full md:w-[53%] mx-auto md:flex flex-row-reverse justify-between mb-10 relative">
+
+                {/* searchbar */}
                 <div className="w-full flex border border-[#696969b6] bg-[#69696911] my-2 md:my-0 max-w-[500px]">
                     <img src={search} className="bg-transparent pl-2 md:pl-4 w-[35px]" />
                     <input type="text" className="p-3 bg-transparent w-full poppins text-[14px] font-[300] placeholder:text-black md:text-[15px] tracking-[2px] pl-4" placeholder="SEARCH FOR ORDERS" />
                 </div>
+
+                {/* filter */}
                 <div className="bg-[#69696900] cursor-pointer flex justify-start gap-8 md:gap-14 my-2 md:my-0 items-center w-[150px] md:w-[180px] p-2 px-2 border border-[#696969b6] " onClick={() => setFilterToggle(!filterToggle)}>
                     <img src={filter} className="w-[14px] md:w-[16px] ml-2" />
                     <h1 className="text-[13px] md:text-[17px] tracking-[2px] text-[#696969]">FILTERS</h1>
@@ -87,13 +91,13 @@ const OrderList = () => {
             <div className="pb-[100px] mt-10">
                 {
                     orders?.order_list?.map((data, i) => (
-                        <NavLink to='/order-details'  key={i}  >
+                        <div key={i}>
                             <div onMouseEnter={() => setActiveItem(i)} onMouseLeave={() => setActiveItem(null)} className="border-b border-b-[#696969] flex flex-col items-center max-w-[900px] mx-auto pb-2 my-4 md:pt-4 relative" >
                             <div className="w-full flex justify-between poppins tracking-[1px]">
                                 <h1 className={`text-[12px] md:text-[16px] ${ data?.status == 'Delivered' ? 'text-[#1E9923]' : 'text-[#FE9D00]'} font-[500]`} >{data?.status}</h1>
                                 <h1 className="text-[10px] md:text-[14px] text-[#00000085] md:text-[black] md:font-[500]">{data?.date}</h1>
                             </div>
-                            <div className="w-full flex gap-2 items-center md:gap-3">
+                            <NavLink to='/order-details' className="w-full flex gap-2 items-center md:gap-3">
                                 <div >
                                     <img src={data?.product_img} className="w-[100px] md:w-[130px]" />
                                 </div>
@@ -104,7 +108,7 @@ const OrderList = () => {
                                     </div>
                                     <h1 className="text-right font-[500] text-[12px] md:text-[17px]">₹{data?.product_price}</h1>
                                 </div>
-                            </div>
+                            </NavLink>
                             <div className="w-full flex justify-between py-2 md:py-6 md:px-3 my-4 bg-[#E6E6E6]" >
                                 <div className="w-[50%] pl-2">
                                     <h1 className="poppins text-[12px] md:text-[16px] font-[500]">Rate the Product</h1>
@@ -135,7 +139,7 @@ const OrderList = () => {
                                 <textarea name="" id="" cols="70" rows="8" className="my-2 "></textarea>
                             </div> */}
                         </div>
-                        </NavLink>
+                        </div>
                     ))
                 }
             </div>

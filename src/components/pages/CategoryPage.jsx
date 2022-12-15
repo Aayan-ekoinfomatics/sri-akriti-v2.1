@@ -55,11 +55,10 @@ const CategoryPage = () => {
     let formdata = new FormData();
     // formdata.append("id", data?.id);
     formdata.append("title", params?.category_id);
-    axios.post(import.meta.env.VITE_APP_BASE_API_LINK + 'categoryPage' + '?lauda=' + params?.category_id  ,formdata).then((response) => setCategoryApiData(response?.data)
+    axios.post(import.meta.env.VITE_APP_BASE_API_LINK + 'categoryPage' + params?.category_id  ,formdata).then((response) => setCategoryApiData(response?.data)
     )
     // console.log(response?.data)
   }, [params])
-  
   
 
   const handleClick = () => {
@@ -391,6 +390,7 @@ const CategoryPage = () => {
           </div>
 
           {/* products */}
+
             {/* { JSON.stringify(categoryApiData) === '{}'  ?
               <div className="flex-1 grid gap-[8px] md:gap-8 grid-cols-2 lg:grid-cols-3 p-2">
               {categoryApiData?.products?.map((data, i) => (
@@ -415,7 +415,6 @@ const CategoryPage = () => {
                 </div>
               ))}
             </div>
-            
             :
             <div className="flex-1 grid gap-[8px] md:gap-8 grid-cols-2 lg:grid-cols-3 p-2">
               {collection_data?.products?.map((data, i) => (

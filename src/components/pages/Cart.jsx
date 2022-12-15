@@ -1,13 +1,18 @@
 import React from "react";
 import card_data from "../../mockapi/cartPageApi";
 import heart_outline from '../../assets/icons/heart-outline.svg'
-import { Link } from "react-router-dom";
+import left_img from '../../assets/icons/black-arrow-left.svg';
+import { Link, NavLink, useNavigate } from "react-router-dom";
 
 const Cart = () => {
+
+  const navigate = useNavigate();
+
+
   return (
     
     <div className="w-full pb-24">
-       
+       <span className=" w-[100px]"><img onClick={() => navigate(-1)} src={left_img} className="cursor-pointer ml-[270px] mt-7 w-[30px]" /></span>
       <div className="w-[90%] mx-auto text-center lora italic text-[22px] py-8">
         <h1>My Cart</h1>
       </div>

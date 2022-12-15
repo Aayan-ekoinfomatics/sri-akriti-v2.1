@@ -7,7 +7,7 @@ const fourth_section = {
     section_data: {
         section_title: 'Made to last longer than life',
         carousal_images: [
-            { route: '/product-details' , image: ring_1}, { route: '/product-details' , image: ring_2}, { route: '/product-details' , image: chain_1}, { route: '/product-details' , image: chain_2}, { route: '/product-details' , image: ring_1}, { route: '/product-details' , image: ring_2}, { route: '/product-details' , image: chain_1}, { route: '/product-details' , image: chain_2},
+            { route: '/product-details/:product_id' , image: ring_1}, { route: '/product-details/:product_id' , image: ring_2}, { route: '/product-details/:product_id' , image: chain_1}, { route: '/product-details/:product_id' , image: chain_2}, { route: '/product-details/:product_id' , image: ring_1}, { route: '/product-details/:product_id' , image: ring_2}, { route: '/product-details/:product_id' , image: chain_1}, { route: '/product-details/:product_id' , image: chain_2},
         ],
     },
 };

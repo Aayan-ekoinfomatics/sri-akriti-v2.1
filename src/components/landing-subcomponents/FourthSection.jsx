@@ -144,7 +144,7 @@ const FourthSection = () => {
 
       {/* mobile view */}
       <div className="block md:hidden py-14 ">
-        {
+        {/* {
           !landingSectionApiAtom == null ?
           <div className="w-[90%] mx-auto ">
             <h1 className="lora italic text-[20px]">
@@ -195,7 +195,31 @@ const FourthSection = () => {
               SEE FULL COLLECTION
             </p>
           </div>
-        }
+        } */}
+        <div className="w-[90%] mx-auto ">
+            <h1 className="lora italic text-[20px]">
+              {fourth_section?.section_data?.section_title}
+            </h1>
+            <Slider
+              className="w-[95%] mx-auto pt-5 pb-10"
+              prevArrow={<PreviousBtn />}
+              nextArrow={<NextBtn />}
+              slidesToScroll={1}
+              slidesToShow={2}
+              infinite
+            >
+              {
+              fourth_section?.section_data?.carousal_images?.map((data, i) => (
+                <div className="max-w-[100%] h-[100%]" key={i}>
+                  <NavLink to={data?.route + '/:product_id'}><img src={data?.image} className="object-contain" /></NavLink>
+                </div>
+              ))
+            }
+            </Slider>
+            <p className="tracking-[8px] poppins text-[12px] leading-10">
+              SEE FULL COLLECTION
+            </p>
+          </div>
       </div>
     </>
   );

@@ -166,7 +166,7 @@ const Productpage = () => {
           {collection_data?.products?.map((data, i) => (
             <div className="p-1" key={i}>
               <div>
-               <Link to='/product-details'> <img src={data?.image} className="" /></Link>
+               <Link to='/product-details/:product_id'> <img src={data?.image} className="" /></Link>
               </div>
               <button className="w-full text-white tracking-[1px] md:tracking-[3px] text-[15px] md:text-[20px] bg-[#3EDCFF] px-4 md:px-7 py-2">
                 ADD TO CART

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import reactLogo from "./assets/react.svg";  
+import reactLogo from "./assets/react.svg";
 import {
   BrowserRouter as Router,
   Routes,
@@ -32,6 +32,7 @@ import OrderList from "./components/pages/OrderList";
 import FAQPage from "./components/pages/FAQPage";
 import ContactUs from "./components/pages/ContactUs";
 import OrderDetails from "./components/pages/OrderDetails";
+import ProtectedRoute from "./helpers/ProtectedRoute";
 
 function App() {
   const [navToggle, setNavToggle] = useRecoilState(SidebarAtom);
@@ -45,9 +46,8 @@ function App() {
     <div className="relative">
       {/* overlay  */}
       <div
-        className={`fixed top-0 left-0 right-0 bottom-0 bg-[#00000071] z-[1000] transition-all duration-500 ${
-          navToggle ? "block" : "hidden"
-        }`}
+        className={`fixed top-0 left-0 right-0 bottom-0 bg-[#00000071] z-[1000] transition-all duration-500 ${navToggle ? "block" : "hidden"
+          }`}
         onClick={() => setNavToggle(false)}
       ></div>
 
@@ -64,7 +64,7 @@ function App() {
         />
       </div>
 
-      <div className="sticky top-0 left-0 right-0 bg-white pt-3 md:pt-8 z-[999] shadow-md">
+      <div className="sticky top-0 left-0 right-0 bg-white pt-3 md:pt-8 z-[999] shadow-md w-full">
         <Navbar />
         {/* <div className="hidden md:block bg-red-300 h-[200px] w-full">
           
@@ -72,23 +72,28 @@ function App() {
       </div>
       <div>
         <Routes>
-          <Route path="/" element={<LandingPage />} />
-          {/* <Route path="/" element /> */}
-          <Route path="*" element={<Navigate replace to='/' />} />
-          <Route path="/product-details/:product_id" element={<Productpage />} />   
+          <Route path='*' element={<Navigate to='/login' replace={true} />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<SignUp />} />
-          <Route path="/account" element={<MyAccount />} />
-          <Route path="/add-address" element={<AddressAdd />} />
-          <Route path="/single-category/:category_id" element={<CategoryPage />}/>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/product-details/:product_id" element={<Productpage />} />
+          <Route path="/single-category/:category_id" element={<CategoryPage />} />
           <Route path="/cart" element={<Cart />} />
-          <Route path="/orders" element={<OrderList />} />
-          <Route path="/order-details" element={<OrderDetails />} />
-          <Route path="/wishlist" element={<Wishlist />} /> 
-          <Route path="/checkout" element={<Checkout />} />
           <Route path="/about-us" element={<AboutUs />} />
           <Route path="/contact-us" element={<ContactUs />} />
           <Route path="/faq" element={<FAQPage />} />
+          <Route path="/signup" element={<SignUp />} />
+
+          <Route element={<ProtectedRoute />}  >
+            {/* <Route path="/" element /> */}
+            <Route path="*" element={<Navigate replace to='/' />} />
+            <Route path="/account" element={<MyAccount />} />
+            <Route path="/add-address" element={<AddressAdd />} />
+            <Route path="/orders" element={<OrderList />} />
+            <Route path="/order-details" element={<OrderDetails />} />
+            <Route path="/wishlist" element={<Wishlist />} />
+            <Route path="/checkout" element={<Checkout />} />
+          </Route>
+
         </Routes>
       </div>
       <Footer />
