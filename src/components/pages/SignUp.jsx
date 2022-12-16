@@ -13,6 +13,7 @@ const SignUp = () => {
 
     const [countryDropdown, setCountryDropdown] = useState(false);
     const [countryCode, setCountryCode] = useState('+91')
+    const [gender, setGender] = useState('')
 
     const genderRef = useRef();
     const nameRef = useRef();
@@ -286,17 +287,19 @@ const SignUp = () => {
 
         e.preventDefault();
         // formdata.append("id", data?.id);
-        if (passwordRef?.current?.value === confirmPasswordRef?.current?.value) {
+        if (passwordRef?.current?.value === confirmPasswordRef?.current?.value && termsandConditionsRef?.current?.checked === true) {
             formdata.append("email", emailRef?.current?.value);
             formdata.append("name", nameRef?.current?.value);
-            formdata.append("number", countryCodeRef?.current?.value);
-            formdata.append("number", numberRef?.current?.value);
+            formdata.append("phone_code", countryCode);
+            formdata.append("phone_no", numberRef?.current?.value);
             formdata.append("password", passwordRef?.current?.value);
-            formdata.append("confirm password", confirmPasswordRef?.current?.value);
-            formdata.append("gender", genderRef?.current?.value);
-            formdata.append("terms&conditions", termsandConditionsRef?.current?.value);
-            // axios.post(import.meta.env.VITE_APP_BASE_API_LINK + 'signUp', formdata).then((response) => setCategoryApiData(response?.data));
-        } else {
+            // formdata.append("confirm password", confirmPasswordRef?.current?.value);
+            formdata.append("gender", gender);
+            formdata.append("terms&conditions", termsandConditionsRef?.current?.checked);
+            axios.post(import.meta.env.VITE_APP_BASE_API_LINK + 'signUp', formdata).then((response) => console.log(response?.data));
+        } else if (termsandConditionsRef?.current?.checked !== true) {
+            setErrorText("Please agree to the terms and conditions")
+        } else if (passwordRef?.current?.value !== confirmPasswordRef?.current?.value) {
             setErrorText("Passwords don't match")
         }
 
@@ -313,9 +316,9 @@ const SignUp = () => {
         }
     });
 
-    // useEffect(() => {
-    //     console.log(formdata)
-    // }, [signUp])
+    useEffect(() => {
+        console.log(errorText)
+    }, [errorText])
 
 
 
@@ -327,15 +330,15 @@ const SignUp = () => {
             <form onSubmit={signUp} className='w-[85%] max-w-[600px] mx-auto mb-10'>
                 <div className='flex justify-between md:px-10'>
                     <div className='flex items-center'>
-                        <input type="radio" id='male' ref={genderRef} className='pr-7 bg-[#e3e3e3] accent-[#696969]' name="gender" />
-                        <label htmlFor="male" className='pl-5 poppins text-[12px] md:text-[14px] tracking-[2px]'>Male</label>
+                        <input type="radio" id='male' ref={genderRef} className='pr-7 bg-[#e3e3e3] accent-[#696969]' name="gender" onClick={() => setGender('Male')} />
+                        <label htmlFor="male" className='pl-5 poppins text-[12px] md:text-[14px] tracking-[2px]' >Male</label>
                     </div>
                     <div className='flex items-center'>
-                        <input type="radio" id='female' ref={genderRef} className='pr-7 bg-[#e3e3e3] accent-[#696969]' name="gender" />
-                        <label htmlFor="female" className='pl-6 poppins text-[12px] md:text-[14px] tracking-[2px]'>Female</label>
+                        <input type="radio" id='female' ref={genderRef} className='pr-7 bg-[#e3e3e3] accent-[#696969]' name="gender" onClick={() => setGender('Female')} />
+                        <label htmlFor="female" className='pl-6 poppins text-[12px] md:text-[14px] tracking-[2px]' >Female</label>
                     </div>
                 </div>
-                <div className='py-2 w-full flex flex-col relative'>
+                <div className='pt-2 w-full flex flex-col relative'>
                     <input type="text" ref={nameRef} placeholder='Name' className='my-2 poppins tracking-[2px] text-[12px] md:text-[14px] px-3 py-2 md:p-3 font-[300] bg-[#e3e3e3]' name="name" />
                     <input type="email" ref={emailRef} placeholder='Email ID' className='my-2 poppins tracking-[2px] text-[12px] md:text-[14px] px-3 py-2 md:p-3 font-[300] bg-[#e3e3e3]' name="email" />
                     <div id='dropdown' className='flex justify-between py-2 gap-4'>
@@ -360,11 +363,11 @@ const SignUp = () => {
                     <input type="password" ref={passwordRef} placeholder='Create Password' className='my-2 poppins tracking-[2px] text-[12px] md:text-[14px] px-3 py-2 md:p-3 font-[300] bg-[#e3e3e3]' name="password" />
                     <input type="password" ref={confirmPasswordRef} placeholder='Confirm Password' className='my-2 poppins tracking-[2px] text-[12px] md:text-[14px] px-3 py-2 md:p-3 font-[300] bg-[#e3e3e3]' name="confirm password" />
                 </div>
-                <div className='w-full md:w-[80%] md:mx-auto flex justify-between sm:justify-start items-center gap-3 pl-1'>
-                    <input id='terms_&_conditions' type="checkbox" name="terms & conditions" ref={termsandConditionsRef} />
-                    <label htmlFor='terms_&_conditions'  name='terms & conditions' className='poppins text-[10px]'>By Signing up to create an account I accept SriAatriti's Terms & Conditions & Privacy Policy</label>
+                <div className='text-center text-red-500 w-full'>{errorText}</div>
+                <div className='w-full md:w-[80%] md:mx-auto flex justify-between sm:justify-start items-center gap-3 pl-1 pt-1'>
+                    <input id='terms_&_conditions' type="checkbox" name="terms & conditions" ref={termsandConditionsRef} onChange={() => console.log(termsandConditionsRef?.current?.checked)} />
+                    <label htmlFor='terms_&_conditions' name='terms & conditions' className='poppins text-[10px]'>By Signing up to create an account I accept SriAatriti's Terms & Conditions & Privacy Policy</label>
                 </div>
-                {errorText}
                 <div className='w-full flex justify-center items-center py-5'>
                     <button className='bg-black text-white poppins text-[13px] md:text-[16px] py-4 px-16 font-[300] tracking-[3px] w-full sm:w-auto'
                     // onClick={showToastMessage}

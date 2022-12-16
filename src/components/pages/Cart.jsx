@@ -12,7 +12,7 @@ const Cart = () => {
   return (
     
     <div className="w-full pb-24">
-       <span className=" w-[100px]"><img onClick={() => navigate(-1)} src={left_img} className="cursor-pointer ml-[270px] mt-7 w-[30px]" /></span>
+       <span className=" w-[100px]"><img onClick={() => navigate(-1)} src={left_img} className="cursor-pointer ml-[10px] md:ml-[200px] lg::ml-[270px] mt-7 w-[30px]" /></span>
       <div className="w-[90%] mx-auto text-center lora italic text-[22px] py-8">
         <h1>My Cart</h1>
       </div>
@@ -73,7 +73,7 @@ const Cart = () => {
               <h1 className="text-[13px] md:text-[16px] font-[400]">₹ {card_data?.checkout_data?.total?.amount}</h1>
           </div>
           <div className="w-[100%] mx-auto py-3">
-          <Link to=''><button className="w-full p-4 poppins tracking-[3px] text-[14px] bg-black text-white">{card_data?.checkout_data?.checkout_button}</button></Link>
+          <NavLink to='/checkout'><button className="w-full p-4 poppins tracking-[3px] text-[14px] bg-black text-white">{card_data?.checkout_data?.checkout_button}</button></NavLink>
           </div>
         </div>
   
@@ -94,15 +94,15 @@ const Cart = () => {
       <div className="w-[90%] mx-auto pt-24 text-center">
         <h1 className="lora text-[18px] md:text-[24px] font-[500]">Our recommendations for you</h1>
       </div>
-      <div className="w-[90%] md:w-[80%] mx-auto grid gap-2 md:gap-5 grid-cols-2 md:grid-cols-3 pt-12">
+      <div className="w-[90%] md:w-[80%] mx-auto grid gap-2 md:gap-14 grid-cols-2 md:grid-cols-3 pt-12">
             {card_data?.products?.map((data, i) => (
-              <div className="relative p-2 w-full" key={i}>
+              <div className="relative w-full" key={i}>
                 <div className=" absolute top-0 right-0 pt-4">
                   <img src={heart_outline} className="w-[20px] mt-4 mr-5" />
                 </div>
                 <div className="my-2">
                   <div className="w-full">
-                    <Link to='/product-details' className="" ><img src={data?.image} className="w-full" /></Link>
+                    <Link to='/product-details/product_id' className="" ><img src={data?.image} className="w-full" /></Link>
                   </div>
                   <button className="bg-[#3EDCFF] w-full p-2 md:p-3 text-[12px] py-1 md:text-[23px] md:font-[500] text-white tracking-[1px] md:tracking-[3px]">
                     ADD TO CART

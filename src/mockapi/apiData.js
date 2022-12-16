@@ -15,10 +15,10 @@ const collection_data = {
       title: "PRODUCT TYPE",
       checkbox: ["Chain", "Neckless", "Bracelet", "Rings"],
     },
-    {
-      title: "M or F",
-      checkbox: ["Womens Platinum bracelet", "Mens Platinum Bracelet"],
-    },
+    // {
+    //   title: "M or F",
+    //   checkbox: ["Womens Platinum bracelet", "Mens Platinum Bracelet"],
+    // },
     {
       title: "METERIAL",
       checkbox: ["Plain Platinum Rings", "Plain Platinum Bracelets", "Diamond Jewellery", "Platinum & Gold Fusion Jewellery", "Men's Plain & Women's Diamond Ring", "Ruby", "Emerald", "Sapphire"],

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import chain from "../../assets/images/chain-1.png";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -9,16 +9,22 @@ import arrow from "../../assets/icons/arrow.svg";
 // import { data } from "autoprefixer";
 import product_details from "../../mockapi/singleProductPageApi";
 import collection_data from "../../mockapi/apiData";
-import { Link, useParams } from "react-router-dom";
+import { Link, NavLink, useParams } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import singleProductApiAtom from "../../recoil/atoms/products/singleProductApiAtom";
 import axios from "axios";
+import categoriesApiAtom from "../../recoil/atoms/products/categoriesApiAtom";
 
 const Productpage = () => {
 
   const params = useParams();
 
   const [ productApiData, setProductApiData ] = useRecoilState(singleProductApiAtom);
+
+  const [ categoryApi, setCategoryApi ] = useRecoilState(categoriesApiAtom);
+
+  const [ selectedQuality, setSelectedQuality ] = useState(0);
+  const [ selectedSize, setSelectedSize ] = useState(0);
 
   useEffect(() => {
     let formdata = new FormData();
@@ -28,9 +34,9 @@ const Productpage = () => {
     // console.log(response?.data)
   }, [params])
   
-  useEffect(() => {
-    console.log(productApiData);
-  }, [productApiData])
+  // useEffect(() => {
+  //   console.log(categoryApi);
+  // }, [categoryApi])
   
 
   return (
@@ -69,30 +75,23 @@ const Productpage = () => {
 
             {/* desktop pictures */}
 
-            {product_details?.product?.map((datas, index) => (
+            {/* {product_details?.product?.map((datas, index) => (
               <React.Fragment key={index}>
-                <div className="hidden md:block w-[25%]">
-                  <div className="w-full flex flex-col gap-[13px]">
-                    <div className="w-[95%]">
-                      <img src={datas?.images[0]} className="w-[97%]" />
-                    </div>
-                    <div className="w-[95%]">
-                      <img src={datas?.images[1]} className="w-[97%]" />
-                    </div>
-                    <div className="w-[95%]">
-                      <img src={datas?.images[2]} className="w-[97%]" />
-                    </div>
-                  </div>
-                </div>
                 <div className="hidden md:block w-[75%]">
                   <img src={datas?.images[0]} className="w-[95%]" />
                 </div>
               </React.Fragment>
-            ))}
+            ))} */}
+
+            <div>
+              <div className="hidden md:block w-full">
+                <img src={ import.meta.env.VITE_APP_BASE_API_LINK + productApiData?.image[0] } className=" min-w-[300px] w-[90%]" />
+              </div>
+            </div>
           </div>
         </div>
-        <div className="lora w-[95%] md:w-[50%] pt-12 mx-auto tracking-[2px] mt-6">
-          {product_details?.product?.map((data, i) => (
+        <div className="lora w-[95%] md:w-[50%] pt-12 mx-auto tracking-[2px] mt-6"> 
+          {/* {product_details?.product?.map((data, i) => (
             <div key={i} className='relative'>
               <h1 className="text-[20px] sm:text-[30px] md:text-[36px] my-2 md:my-[20px] lg:my-[35px] font-[600]">
                 {data?.title}
@@ -103,22 +102,6 @@ const Productpage = () => {
                 <span className="line-through">₹{data?.original_price}</span>{" "}
                 {data?.offer}
               </h1>
-              {/* <div className=" w-full sm:w-[55%] md:w-[60%] p-2">
-                <div className="flex justify-between w-full poppins text-[13px] tracking-[2px]">
-                  <h1>Delivery Date</h1> <h1>{data?.delivery_date}</h1>
-                </div>
-                <input
-                  type="text"
-                  placeholder="Pincode"
-                  className=" w-full border border-[#41C5BE] p-2 md:p-4 tracking-[2px] lora text-[14px] md:text-[20px]"
-                />
-              </div>
-              <h1 className="text-[12px] sm:text-[14px] md:text-[17px] my-10 md:my-[20px] lg:my-[40px] poppins text-[#575757ec]">
-                {data?.discription}
-              </h1>
-              <button className="bg-[#3EDCFF] poppins text-white text-[22px] font-[300] mb-8 px-12 md:px-24 md:my-[20px] lg:my-[30px] shadow-lg py-[5px] md:py-[12px] flex justify-center items-center">
-                BUY NOW
-              </button> */}
               <div className="w-full mx-auto md:my-8">
                 <h1 className="lora text-[15px] font-[500] md:text-[20px] my-4">M or F</h1>
                 <div className="flex justify-between md:w-[58%] text-[#6969698a]">
@@ -164,7 +147,77 @@ const Productpage = () => {
                 <h1>This chain is not eligible for exchange or refund</h1>
               </div>
             </div>
-          ))}
+          ))} */}
+          <div className='relative'>
+              <h1 className="text-[20px] sm:text-[30px] md:text-[36px] my-2 md:my-[20px] lg:my-[35px] font-[600]">
+                {productApiData?.name}
+              </h1>
+              <h1 className="text-[15px] md:text-[18px] lora ">{productApiData?.name}</h1>
+              <h1 className="text-[18px] sm:text-[26px] md:text-[25px] my-3 md:my-[20px] lg:my-[30px]">
+                ₹ {productApiData?.selling_price[selectedQuality][selectedSize]}
+                <span className="line-through text-[20px] text-[#696969] mx-2">₹ {productApiData?.actual_price[selectedQuality][selectedSize]} </span>
+                <span className="text-[18px]">{productApiData?.discount}% Off</span>
+              </h1>
+              <div className="w-full mx-auto md:my-8">
+                <h1 className="lora text-[15px] font-[500] md:text-[20px] my-4">M or F</h1>
+                <div className="flex justify-between md:w-[58%] text-[#6969698a]">
+                  {/* <h1 className="text-[12px] md:text-[14px] lora text-black" >BOTH</h1>
+                  <h1 className="text-[12px] md:text-[14px] lora" >MEN'S ONLY</h1>
+                  <h1 className="text-[12px] md:text-[14px] lora" >WOMEN'S ONLY</h1> */}
+                  <h1 className="text-[12px] md:text-[14px] lora text-black" >{productApiData?.gender}</h1>
+                </div>
+              </div>
+              <div className="w-full mx-auto md:my-8">
+                <h1 className="lora text-[15px] font-[500] md:text-[20px] my-4">Diamond Quality</h1>
+                <div className="flex justify-between md:w-[30%] text-[#6969698a] ">
+                  {/* <h1 className="text-[12px] md:text-[14px] lora" >SI J</h1> */}
+                    {
+                      productApiData?.diamond_quality?.map((data, i) => (
+                        <h1 key={i} className={`text-[12px] md:text-[14px] lora cursor-pointer ${i === selectedQuality ? 'text-black' : ''} `} onClick={() => setSelectedQuality(i)} >{data}</h1>
+                      ))
+                    }
+                </div>
+              </div>
+              <div className="w-full mx-auto md:my-8">
+                <h1 className="lora text-[15px] font-[500] md:text-[20px] my-4">Size</h1>
+                <div className="flex justify-between md:w-[30%] text-[#6969698a] ">
+                  {/* <h1 className="text-[12px] md:text-[14px] lora" >16 INCHES</h1>
+                  <h1 className="text-[12px] md:text-[14px] lora text-black" >18 INCHES</h1> */}
+                  {
+                    productApiData?.size?.map((data, i) => (
+                      <h1 key={i} className={`text-[12px] md:text-[14px] lora cursor-pointer ${i === selectedSize ? 'text-black' : ''} `} onClick={() => setSelectedSize(i)} >{data}</h1>
+                    ))
+                  }
+                </div>
+              </div>
+              <div className="w-full mx-auto md:my-8">
+                <h1 className="lora text-[15px] font-[500] md:text-[20px] my-4">Weight</h1>
+                <div className="flex justify-between md:w-[30%] text-[#6969698a] ">
+                  {/* <h1 className="text-[12px] md:text-[14px] lora text-black" >16 gms</h1>
+                  <h1 className="text-[12px] md:text-[14px] lora" >18 gms</h1> */}
+                  {
+                    productApiData?.weight?.map((data, i) => (
+                      <h1 key={i} className={`text-[12px] md:text-[14px] lora cursor-pointer mx-2 ${i === selectedSize ? 'text-black' : ''} `} onClick={() => setSelectedSize(i)}>{data}</h1>
+                    ))
+                  }
+                </div>
+              </div>
+              <div className="w-full md:w-[80%] flex gap-2 justify-between sticky botton-0 right-0 text-black my-5">
+                <Link to=''><button className="bg-black text-white p-2 px-2 md:p-4 md:px-14 poppins text-[15px] md:text-[20px] tracking-[2px] md:tracking-[3px]">ADD TO CART</button></Link>
+                <button className="bg-[#3EDCFF] p-2 px-6 md:p-4 md:px-[90px] poppins text-[15px] md:text-[20px] tracking-[2px] md:tracking-[3px]">BUY NOW</button>
+              </div>
+              <div className="w-full poppins text-[12px] md:text-[14px] my-4 md:mt-20">
+                <h1 className="lora text-[16px] md:text-[20px] " >Product Description</h1>
+                <ul className="poppins font-[300] text-[12px] md:text-[13px] list-disc pl-4">
+                  {/* {
+                    product_details?.product[0]?.description_list?.map((data, i) => (
+                      <li className="py-1 md:py-[3px]" key={i}>{data}</li>
+                    ))
+                  } */}
+                </ul>
+                <h1>This chain is not eligible for exchange or refund</h1>
+              </div>
+            </div>
         </div>
       </div>
       <div className="w-[93%] mx-auto flex justify-start items-center gap-2 md:gap-4 my-4 mb-10">
@@ -180,7 +233,7 @@ const Productpage = () => {
       </div>
       <div>
         <div className="w-[95%] mx-auto grid grid-cols-2 md:grid-cols-4 gap-1 md:gap-4 mb-10">
-          {collection_data?.products?.map((data, i) => (
+          {/* {collection_data?.products?.map((data, i) => (
             <div className="p-1" key={i}>
               <div>
                <Link to='/product-details/:product_id'> <img src={data?.image} className="" /></Link>
@@ -195,7 +248,28 @@ const Productpage = () => {
                 {data?.product_name}
               </h1>
             </div>
-          ))}
+          ))} */}
+          {
+            categoryApi?.data?.map((data, i) => (
+              <div className="p-1" key={i}>
+                <div>
+               <NavLink to='/product-details/:product_id'> <img src={import.meta.env.VITE_APP_BASE_API_LINK + data?.image} className="" /></NavLink>
+              </div>
+              <button className="w-full text-white tracking-[1px] md:tracking-[3px] text-[15px] md:text-[20px] bg-[#3EDCFF] px-4 md:px-7 py-2">
+                ADD TO CART
+              </button>
+              <div className="flex items-center gap-3">
+                <h1 className="text-[14px] py-2 md:text-[23px] font-[500] tracking-[2px] ">
+                  ₹ {data?.selling_price}
+                </h1>
+                <span className="text-[20px] line-through text-[#696969] tracking-[2px]">₹ {data?.actual_price}</span>
+              </div>
+              <h1 className="text-[12px] md:text-[19px] font-[400] tracking-[3px]">
+                {data?.name}
+              </h1>
+              </div>
+            ))
+          }
         </div>
       </div>
     </>

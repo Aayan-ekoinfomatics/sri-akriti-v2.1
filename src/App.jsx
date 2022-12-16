@@ -72,7 +72,7 @@ function App() {
       </div>
       <div>
         <Routes>
-          <Route path='*' element={<Navigate to='/login' replace={true} />} />
+          <Route path='*' element={<Navigate to={localStorage.getItem("status") === 'true' ? '/' : '/login'} replace={true} />} />
           <Route path="/login" element={<Login />} />
           <Route path="/" element={<LandingPage />} />
           <Route path="/product-details/:product_id" element={<Productpage />} />
@@ -82,6 +82,7 @@ function App() {
           <Route path="/contact-us" element={<ContactUs />} />
           <Route path="/faq" element={<FAQPage />} />
           <Route path="/signup" element={<SignUp />} />
+          {/* <Route path="/test-page" element={<AllCollections />} /> */}
 
           <Route element={<ProtectedRoute />}  >
             {/* <Route path="/" element /> */}
