@@ -428,59 +428,9 @@ const CategoryPage = () => {
 
           {/* products */}
 
-          {/* { JSON.stringify(categoryApiData) === '{}'  ?
-              <div className="flex-1 grid gap-[8px] md:gap-8 grid-cols-2 lg:grid-cols-3 p-2">
-              {categoryApiData?.products?.map((data, i) => (
-                <div className="relative my-2" key={i}>
-                  <div className=" absolute top-0 right-0 cursor-pointer" onClick={() => setWishlistToggle(!wishlistToggle)}>
-                    <img src={wishlistToggle ? heart_filled : heart_outline} className="w-[25px] mt-4 mr-5" />
-                  </div>
-                  <div className="">
-                    <div>
-                      <Link to='/product-details' ><img src={import.meta.env.VITE_APP_BASE_API_LINK + data?.image} alt="" /></Link> 
-                    </div>
-                    <button className="bg-[#3EDCFF] w-full p-2 md:p-3 text-[16px] md:text-[1.5rem] text-white tracking-[1px] md:tracking-[3px]">
-                      ADD TO CART
-                    </button>
-                    <p className="font-[500] poppins text-[0.95rem] md:text-[1.438rem] tracking-[2px] pl-1">
-                      ₹{data?.price}
-                    </p>
-                    <p className="font-[300] poppins text-[0.9rem] md:text-[1.438rem] tracking-[1.4px] pl-1">
-                      {data?.product_name}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-            :
-            <div className="flex-1 grid gap-[8px] md:gap-8 grid-cols-2 lg:grid-cols-3 p-2">
-              {collection_data?.products?.map((data, i) => (
-                <div className="relative my-2" key={i}>
-                  <div className=" absolute top-0 right-0 cursor-pointer" onClick={() => setWishlistToggle(!wishlistToggle)}>
-                    <img src={wishlistToggle ? heart_filled : heart_outline} className="w-[25px] mt-4 mr-5" />
-                  </div>
-                  <div className="">
-                    <div>
-                      <Link to='/product-details' ><img src={data?.image} alt="" /></Link> 
-                    </div>
-                    <button className="bg-[#3EDCFF] w-full p-2 md:p-3 text-[16px] md:text-[1.5rem] text-white tracking-[1px] md:tracking-[3px]">
-                      ADD TO CART
-                    </button>
-                    <p className="font-[500] poppins text-[0.95rem] md:text-[1.438rem] tracking-[2px] pl-1">
-                      ₹{data?.price}
-                    </p>
-                    <p className="font-[300] poppins text-[0.9rem] md:text-[1.438rem] tracking-[1.4px] pl-1">
-                      {data?.product_name}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-            } */}
-
           <div className="flex-1 grid gap-[8px] md:gap-8 grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 p-2">
             {categoryApiData?.data?.map((data, i) => (
-              <div className="relative my-2" key={i}>
+              <div className="relative my-2 " key={i}>
                 <div className=" absolute top-0 right-0 cursor-pointer mt-4 mr-5" onClick={() => {
                   if (wishlistToggle === i) {
                     setWishlistToggle(null)
@@ -491,17 +441,8 @@ const CategoryPage = () => {
                   <img src={wishlistToggle === i ? heart_filled : heart_outline} className="w-[25px]" />
                 </div>
                 <div className="">
-                  <div
-                  //   onClick={() => {
-                  //   let formdata = new FormData();
-                  //   formdata.append("id", data?.id);
-                  //   formdata.append("title", data?.product_name);
-
-                  //   axios.post(import.meta.env.VITE_APP_BASE_API_LINK + 'productPage' + '?lauda=' + data?.product_name  , formdata).then((response) => setProductApi(response?.data))
-                  // }}
-                  >
+                  <div>
                     <NavLink
-                      // to={'/product-details/' + '?' + data?.product_name}
                       to={'/product-details' + '/' + data?.id}
                     ><img src={import.meta.env.VITE_APP_BASE_API_LINK + data?.image} alt="" /></NavLink>
                   </div>

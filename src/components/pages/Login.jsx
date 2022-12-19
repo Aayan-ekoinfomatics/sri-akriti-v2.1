@@ -22,7 +22,7 @@ const Login = () => {
 
     if (emailRef?.current?.value?.length === 0 || passwordRef?.current?.value?.length === 0) {
       setErrorText('Please fill all fields')
-    } else if (emailRef?.current?.value?.length > 5 && passwordRef?.current?.value?.length >= 8) {
+    } else if (emailRef?.current?.value?.length > 5 && passwordRef?.current?.value?.length >= 5) {
 
       axios({
           method: "post",

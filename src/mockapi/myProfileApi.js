@@ -4,12 +4,10 @@ const profile_data = {
     my_profile: {
         header: {heading: 'My Profile', sub_heading: 'Edit'},
         content: [
-            {label: 'First Name', type: 'text'},
-            {label: 'Last Name', type: 'text'},
+            {label: 'Name', type: 'text'},
             {label: 'Gender', type: 'text'},
             {label: 'Date Od Birth', type: 'date'},
             {label: 'Email ID', type: 'email'},
-            {label: 'Pincode', type: 'number'},
             {label: 'Phone Number', type: 'number'},
         ],
     },

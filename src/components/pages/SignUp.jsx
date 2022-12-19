@@ -19,6 +19,7 @@ const SignUp = () => {
     const nameRef = useRef();
     const countryCodeRef = useRef();
     const numberRef = useRef();
+    const dobRef = useRef();
     const emailRef = useRef();
     const passwordRef = useRef();
     const confirmPasswordRef = useRef();
@@ -292,8 +293,8 @@ const SignUp = () => {
             formdata.append("name", nameRef?.current?.value);
             formdata.append("phone_code", countryCode);
             formdata.append("phone_no", numberRef?.current?.value);
+            formdata.append("dob", dobRef?.current?.value);
             formdata.append("password", passwordRef?.current?.value);
-            // formdata.append("confirm password", confirmPasswordRef?.current?.value);
             formdata.append("gender", gender);
             formdata.append("terms&conditions", termsandConditionsRef?.current?.checked);
             axios.post(import.meta.env.VITE_APP_BASE_API_LINK + 'signUp', formdata).then((response) => console.log(response?.data));
@@ -343,8 +344,8 @@ const SignUp = () => {
                     </div>
                 </div>
                 <div className='pt-2 w-full flex flex-col relative'>
-                    <input type="text" ref={nameRef} placeholder='Name' className='my-2 poppins tracking-[2px] text-[12px] md:text-[14px] px-3 py-2 md:p-3 font-[300] bg-[#e3e3e3]' name="name" />
-                    <input type="email" ref={emailRef} placeholder='Email ID' className='my-2 poppins tracking-[2px] text-[12px] md:text-[14px] px-3 py-2 md:p-3 font-[300] bg-[#e3e3e3]' name="email" />
+                    <input type="text" ref={nameRef} placeholder='Name' className='outline-none my-2 poppins tracking-[2px] text-[12px] md:text-[14px] px-3 py-2 md:p-3 font-[300] bg-[#e3e3e3]' name="name" />
+                    <input type="email" ref={emailRef} placeholder='Email ID' className='outline-none my-2 poppins tracking-[2px] text-[12px] md:text-[14px] px-3 py-2 md:p-3 font-[300] bg-[#e3e3e3]' name="email" />
                     <div id='dropdown' className='flex justify-between py-2 gap-4'>
                         <div className='bg-[#e3e3e3] w-[4rem] md:w-[5.5rem] flex justify-between gap-1 items-center px-1 cursor-pointer ' onClick={() => setCountryDropdown(!countryDropdown)}>
                             <div className='poppins text-[12px] md:text-[14px] flex-1 min-w-[28px] pl-1' ref={countryCodeRef} >{countryCode}</div>
@@ -355,7 +356,10 @@ const SignUp = () => {
                             options={options}
                             onChange={(values) => this.onChange(values)}
                         /> */}
-                        <input type="number" min={0} ref={numberRef} placeholder='Moblile Number' className=' poppins tracking-[2px] text-[12px] md:text-[14px] px-3 py-2 md:p-3 font-[300] flex-1 bg-[#e3e3e3]' name="number" />
+                        <input type="number" min={0} ref={numberRef} placeholder='Moblile Number' className='outline-none  poppins tracking-[2px] text-[12px] md:text-[14px] px-3 py-2 md:p-3 font-[300] flex-1 bg-[#e3e3e3]' name="number" />
+                        <div className='bg-[#e3e3e3] w-[4rem] md:w-fit flex justify-between gap-1 items-center px-1 cursor-pointer'>
+                            <input type="date" ref={dobRef} name="D.O.B" className='outline-none text-[14px] px-1 bg-[#e3e3e3]' />
+                        </div>
                     </div>
                     <div className={`bg-[#f0f0f0e0] w-[140px] max-w-[140px] max-h-[180px] md:max-h-[240px] absolute translate-y-[150px] md:translate-y-[180px] left-0 flex flex-col justify-start items-center transition-all duration-400 md:duration-500 cursor-pointer ${countryDropdown ? ' h-[200px] ease-in overflow-y-scroll py-2 px-2' : 'h-0 ease-out overflow-hidden'}`} >
                         {
@@ -364,8 +368,8 @@ const SignUp = () => {
                             ))
                         }
                     </div>
-                    <input type="password" ref={passwordRef} placeholder='Create Password' className='my-2 poppins tracking-[2px] text-[12px] md:text-[14px] px-3 py-2 md:p-3 font-[300] bg-[#e3e3e3]' name="password" />
-                    <input type="password" ref={confirmPasswordRef} placeholder='Confirm Password' className='my-2 poppins tracking-[2px] text-[12px] md:text-[14px] px-3 py-2 md:p-3 font-[300] bg-[#e3e3e3]' name="confirm password" />
+                    <input type="password" ref={passwordRef} placeholder='Create Password' className='outline-none my-2 poppins tracking-[2px] text-[12px] md:text-[14px] px-3 py-2 md:p-3 font-[300] bg-[#e3e3e3]' name="password" />
+                    <input type="password" ref={confirmPasswordRef} placeholder='Confirm Password' className='outline-none my-2 poppins tracking-[2px] text-[12px] md:text-[14px] px-3 py-2 md:p-3 font-[300] bg-[#e3e3e3]' name="confirm password" />
                 </div>
                 <div className='text-center text-red-500 w-full'>{errorText}</div>
                 <div className='w-full md:w-[80%] md:mx-auto flex justify-between sm:justify-start items-center gap-3 pl-1 pt-1'>
