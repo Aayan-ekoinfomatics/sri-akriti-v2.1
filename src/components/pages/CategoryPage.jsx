@@ -481,14 +481,14 @@ const CategoryPage = () => {
           <div className="flex-1 grid gap-[8px] md:gap-8 grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 p-2">
             {categoryApiData?.data?.map((data, i) => (
               <div className="relative my-2" key={i}>
-                <div className=" absolute top-0 right-0 cursor-pointer" onClick={() => {
+                <div className=" absolute top-0 right-0 cursor-pointer mt-4 mr-5" onClick={() => {
                   if (wishlistToggle === i) {
                     setWishlistToggle(null)
                   } else {
                     setWishlistToggle(i)
                   }
                 }}>
-                  <img src={wishlistToggle === i ? heart_filled : heart_outline} className="w-[25px] mt-4 mr-5" />
+                  <img src={wishlistToggle === i ? heart_filled : heart_outline} className="w-[25px]" />
                 </div>
                 <div className="">
                   <div

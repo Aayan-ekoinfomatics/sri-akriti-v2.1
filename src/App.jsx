@@ -33,6 +33,8 @@ import FAQPage from "./components/pages/FAQPage";
 import ContactUs from "./components/pages/ContactUs";
 import OrderDetails from "./components/pages/OrderDetails";
 import ProtectedRoute from "./helpers/ProtectedRoute";
+import Products from "./components/products-subcomponents/Products";
+import collection_data from "./mockapi/apiData";
 
 function App() {
   const [navToggle, setNavToggle] = useRecoilState(SidebarAtom);
@@ -82,7 +84,7 @@ function App() {
           <Route path="/contact-us" element={<ContactUs />} />
           <Route path="/faq" element={<FAQPage />} />
           <Route path="/signup" element={<SignUp />} />
-          {/* <Route path="/test-page" element={<AllCollections />} /> */}
+          {/* <Route path="/test-page" name='Products' apiData={collection_data} element={<Products />} /> */}
 
           <Route element={<ProtectedRoute />}  >
             {/* <Route path="/" element /> */}

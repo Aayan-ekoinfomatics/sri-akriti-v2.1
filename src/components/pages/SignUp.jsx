@@ -316,9 +316,9 @@ const SignUp = () => {
         }
     });
 
-    useEffect(() => {
-        console.log(errorText)
-    }, [errorText])
+    // useEffect(() => {
+    //     console.log(errorText)
+    // }, [errorText])
 
 
 
@@ -330,12 +330,16 @@ const SignUp = () => {
             <form onSubmit={signUp} className='w-[85%] max-w-[600px] mx-auto mb-10'>
                 <div className='flex justify-between md:px-10'>
                     <div className='flex items-center'>
-                        <input type="radio" id='male' ref={genderRef} className='pr-7 bg-[#e3e3e3] accent-[#696969]' name="gender" onClick={() => setGender('Male')} />
+                        <input type="radio" id='male' ref={genderRef} className='pr-7 bg-[#e3e3e3] accent-[#696969]' name="gender" onClick={() => setGender('M')} />
                         <label htmlFor="male" className='pl-5 poppins text-[12px] md:text-[14px] tracking-[2px]' >Male</label>
                     </div>
                     <div className='flex items-center'>
-                        <input type="radio" id='female' ref={genderRef} className='pr-7 bg-[#e3e3e3] accent-[#696969]' name="gender" onClick={() => setGender('Female')} />
+                        <input type="radio" id='female' ref={genderRef} className='pr-7 bg-[#e3e3e3] accent-[#696969]' name="gender" onClick={() => setGender('F')} />
                         <label htmlFor="female" className='pl-6 poppins text-[12px] md:text-[14px] tracking-[2px]' >Female</label>
+                    </div>
+                    <div className='flex items-center'>
+                        <input type="radio" id='other' ref={genderRef} className='pr-7 bg-[#e3e3e3] accent-[#696969]' name="gender" onClick={() => setGender('O')} />
+                        <label htmlFor="other" className='pl-6 poppins text-[12px] md:text-[14px] tracking-[2px]' >Other</label>
                     </div>
                 </div>
                 <div className='pt-2 w-full flex flex-col relative'>
