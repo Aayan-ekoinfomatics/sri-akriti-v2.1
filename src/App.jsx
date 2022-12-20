@@ -35,6 +35,7 @@ import OrderDetails from "./components/pages/OrderDetails";
 import ProtectedRoute from "./helpers/ProtectedRoute";
 import Products from "./components/products-subcomponents/Products";
 import collection_data from "./mockapi/apiData";
+import EditAddress from "./components/pages/EditAdress";
 
 function App() {
   const [navToggle, setNavToggle] = useRecoilState(SidebarAtom);
@@ -91,6 +92,7 @@ function App() {
             <Route path="*" element={<Navigate replace to='/' />} />
             <Route path="/account" element={<MyAccount />} />
             <Route path="/add-address" element={<AddressAdd />} />
+            <Route path="/edit-address/:id" element={<EditAddress />} />
             <Route path="/orders" element={<OrderList />} />
             <Route path="/order-details" element={<OrderDetails />} />
             <Route path="/wishlist" element={<Wishlist />} />

@@ -23,7 +23,7 @@ const CategoryPage = () => {
   const [productApi, setProductApi] = useRecoilState(singleProductApiAtom)
 
   const [sortToggle, setSortToggle] = useState(false);
-  const [wishlistToggle, setWishlistToggle] = useState(null);
+  const [wishlistToggle, setWishlistToggle] = useState([]);
   const [filterToggle, setFilterToggle] = useState(false);
   const [desktopSort, setDesktopSort] = useState(false);
 
@@ -55,12 +55,19 @@ const CategoryPage = () => {
     let formdata = new FormData();
     // formdata.append("id", data?.id);
     formdata.append("category_name", params?.category_id);
+    formdata.append("token", localStorage.getItem("token"));
     axios.post(import.meta.env.VITE_APP_BASE_API_LINK + 'categoryPageNew', formdata).then((response) => {
-      // console.log(response)
+      console.log(response)
       setCategoryApiData(response?.data)
+      setWishlistToggle(response?.data?.wishlist_array)
     })
     // console.log(response)
   }, [params])
+
+  // useEffect(() => {
+  //   setWishlistToggle(localStorage.getItem("wishlist_array"))
+  // }, [localStorage.getItem("wishlist_array")])
+  
 
 
   const handleClick = () => {
@@ -132,7 +139,7 @@ const CategoryPage = () => {
           ) : (
             <>
               <div className={`w-full bg-white bg-cover bg-no-repeat bg-center`}
-                style={{ backgroundImage: `url(${import.meta.env.VITE_APP_BASE_API_LINK + categoryApiData?.data?.category_image})` }}   
+                style={{ backgroundImage: `url(${import.meta.env.VITE_APP_BASE_API_LINK + categoryApiData?.data?.category_image})` }}
               >
                 <div className="w-full text-center py-8 md:text-left sm:p-3 mb-10 md:p-6 md:py-32 bg-black bg-opacity-60 md:bg-opacity-20">
                   <h1 className="lora text-[28px] md:text-[45px] tracking-[1px] font-[600] my-5 md:my-16 pl-10 w-full uppercase">
@@ -432,13 +439,19 @@ const CategoryPage = () => {
             {categoryApiData?.data?.map((data, i) => (
               <div className="relative my-2 " key={i}>
                 <div className=" absolute top-0 right-0 cursor-pointer mt-4 mr-5" onClick={() => {
-                  if (wishlistToggle === i) {
-                    setWishlistToggle(null)
-                  } else {
-                    setWishlistToggle(i)
-                  }
+                  
+                  let formdata = new FormData();
+                  // formdata.append("id", data?.id);
+                  formdata.append("token", localStorage.getItem("token"));
+                  formdata.append("product_id", data?.id);
+                  axios.post(import.meta.env.VITE_APP_BASE_API_LINK + 'userWishlist', formdata).then((response) => {
+                    console.log(response?.data)
+                    localStorage.setItem("wishlist_array", response?.data?.wishlist_array)
+                    setWishlistToggle(response?.data?.wishlist_array)
+                    // setProfileApiData(response?.data)
+                  })
                 }}>
-                  <img src={wishlistToggle === i ? heart_filled : heart_outline} className="w-[25px]" />
+                  <img src={localStorage.getItem("wishlist_array").includes(data?.id) ? heart_filled : heart_outline} className="w-[25px]" />
                 </div>
                 <div className="">
                   <div>

@@ -329,36 +329,35 @@ const SignUp = () => {
                 <h1>New Customer</h1>
             </div>
             <form onSubmit={signUp} className='w-[85%] max-w-[600px] mx-auto mb-10'>
-                <div className='flex justify-between md:px-10'>
-                    <div className='flex items-center'>
-                        <input type="radio" id='male' ref={genderRef} className='pr-7 bg-[#e3e3e3] accent-[#696969]' name="gender" onClick={() => setGender('M')} />
-                        <label htmlFor="male" className='pl-5 poppins text-[12px] md:text-[14px] tracking-[2px]' >Male</label>
+                <div className='flex justify-between px-1 md:px-10'>
+                    <div className='flex gap-[5px] md:gap-2 justify-start items-center'>
+                        <input type="radio" id='male' ref={genderRef} className='bg-[#e3e3e3] accent-[#696969]' name="gender" onClick={() => setGender('M')} />
+                        <label htmlFor="male" className='poppins text-[12px] md:text-[14px] tracking-[2px]' >Male</label>
                     </div>
-                    <div className='flex items-center'>
-                        <input type="radio" id='female' ref={genderRef} className='pr-7 bg-[#e3e3e3] accent-[#696969]' name="gender" onClick={() => setGender('F')} />
-                        <label htmlFor="female" className='pl-6 poppins text-[12px] md:text-[14px] tracking-[2px]' >Female</label>
+                    <div className='flex gap-[5px] md:gap-2 justify-start items-center'>
+                        <input type="radio" id='female' ref={genderRef} className='bg-[#e3e3e3] accent-[#696969]' name="gender" onClick={() => setGender('F')} />
+                        <label htmlFor="female" className='poppins text-[12px] md:text-[14px] tracking-[2px]' >Female</label>
                     </div>
-                    <div className='flex items-center'>
-                        <input type="radio" id='other' ref={genderRef} className='pr-7 bg-[#e3e3e3] accent-[#696969]' name="gender" onClick={() => setGender('O')} />
-                        <label htmlFor="other" className='pl-6 poppins text-[12px] md:text-[14px] tracking-[2px]' >Other</label>
+                    <div className='flex gap-[5px] md:gap-2 justify-start items-center'>
+                        <input type="radio" id='other' ref={genderRef} className='bg-[#e3e3e3] accent-[#696969]' name="gender" onClick={() => setGender('O')} />
+                        <label htmlFor="other" className='poppins text-[12px] md:text-[14px] tracking-[2px]' >Other</label>
                     </div>
                 </div>
                 <div className='pt-2 w-full flex flex-col relative'>
-                    <input type="text" ref={nameRef} placeholder='Name' className='outline-none my-2 poppins tracking-[2px] text-[12px] md:text-[14px] px-3 py-2 md:p-3 font-[300] bg-[#e3e3e3]' name="name" />
-                    <input type="email" ref={emailRef} placeholder='Email ID' className='outline-none my-2 poppins tracking-[2px] text-[12px] md:text-[14px] px-3 py-2 md:p-3 font-[300] bg-[#e3e3e3]' name="email" />
-                    <div id='dropdown' className='flex justify-between py-2 gap-4'>
-                        <div className='bg-[#e3e3e3] w-[4rem] md:w-[5.5rem] flex justify-between gap-1 items-center px-1 cursor-pointer ' onClick={() => setCountryDropdown(!countryDropdown)}>
+                    <input type="text" ref={nameRef} placeholder='Name' className='outline-none my-2 poppins tracking-[2px] text-[12px] md:text-[14px] px-3 py-3 md:p-3 font-[300] bg-[#e3e3e3]' name="name" />
+                    <input type="email" ref={emailRef} placeholder='Email ID' className='outline-none my-2 poppins tracking-[2px] text-[12px] md:text-[14px] px-3 py-3 md:p-3 font-[300] bg-[#e3e3e3]' name="email" />
+                    <div id='dropdown' className='flex justify-between py-2 gap-[4px] md:gap-4'>
+                        <div className='bg-[#e3e3e3] w-[4rem] md:w-[5.5rem] flex justify-between gap-1 items-center px-1 cursor-pointer py-2' onClick={() => setCountryDropdown(!countryDropdown)}>
                             <div className='poppins text-[12px] md:text-[14px] flex-1 min-w-[28px] pl-1' ref={countryCodeRef} >{countryCode}</div>
                             <div className='w-full flex justify-center items-center'><img src={arrow} className="w-[13px]" /></div>
                         </div>
-                        {/* <Select
-                            multi
-                            options={options}
-                            onChange={(values) => this.onChange(values)}
-                        /> */}
-                        <input type="number" min={0} ref={numberRef} placeholder='Moblile Number' className='outline-none  poppins tracking-[2px] text-[12px] md:text-[14px] px-3 py-2 md:p-3 font-[300] flex-1 bg-[#e3e3e3]' name="number" />
-                        <div className='bg-[#e3e3e3] w-[4rem] md:w-fit flex justify-between gap-1 items-center px-1 cursor-pointer'>
-                            <input type="date" ref={dobRef} name="D.O.B" className='outline-none text-[14px] px-1 bg-[#e3e3e3]' />
+                        <input type="number" min={0} ref={numberRef} placeholder='Moblile Number' className='outline-none w-[8rem] md:w-fit poppins tracking-[2px] text-[12px] md:text-[14px] px-3 py-2 md:p-3 font-[300] flex-1 bg-[#e3e3e3]' name="number" />
+                        <div className='bg-[#e3e3e3] w-fit md:w-fit flex justify-between gap-1 items-center px-1 cursor-pointer py-2'>
+                            <input type="text"
+                            placeholder='D.O.B'
+                            onFocus={() => (dobRef.current.type = "date")}
+                            onBlur={() => (dobRef.current.type = "text")}
+                            ref={dobRef} name="D.O.B" className='outline-none w-full tracking-[1px] text-[12px] md:text-[14px] pl-2 max-w-[4rem] md:max-w-full bg-[#e3e3e3]' />
                         </div>
                     </div>
                     <div className={`bg-[#f0f0f0e0] w-[140px] max-w-[140px] max-h-[180px] md:max-h-[240px] absolute translate-y-[150px] md:translate-y-[180px] left-0 flex flex-col justify-start items-center transition-all duration-400 md:duration-500 cursor-pointer ${countryDropdown ? ' h-[200px] ease-in overflow-y-scroll py-2 px-2' : 'h-0 ease-out overflow-hidden'}`} >
@@ -368,10 +367,10 @@ const SignUp = () => {
                             ))
                         }
                     </div>
-                    <input type="password" ref={passwordRef} placeholder='Create Password' className='outline-none my-2 poppins tracking-[2px] text-[12px] md:text-[14px] px-3 py-2 md:p-3 font-[300] bg-[#e3e3e3]' name="password" />
-                    <input type="password" ref={confirmPasswordRef} placeholder='Confirm Password' className='outline-none my-2 poppins tracking-[2px] text-[12px] md:text-[14px] px-3 py-2 md:p-3 font-[300] bg-[#e3e3e3]' name="confirm password" />
+                    <input type="password" ref={passwordRef} placeholder='Create Password' className='outline-none my-2 poppins tracking-[2px] text-[12px] md:text-[14px] px-3 py-3 md:p-3 font-[300] bg-[#e3e3e3]' name="password" />
+                    <input type="password" ref={confirmPasswordRef} placeholder='Confirm Password' className='outline-none my-2 poppins tracking-[2px] text-[12px] md:text-[14px] px-3 py-3 md:p-3 font-[300] bg-[#e3e3e3]' name="confirm password" />
                 </div>
-                <div className='text-center text-red-500 w-full'>{errorText}</div>
+                <div className='text-center text-red-500 w-full text-[12px] md:text-[15px]'>{errorText}</div>
                 <div className='w-full md:w-[80%] md:mx-auto flex justify-between sm:justify-start items-center gap-3 pl-1 pt-1'>
                     <input id='terms_&_conditions' type="checkbox" name="terms & conditions" ref={termsandConditionsRef} onChange={() => console.log(termsandConditionsRef?.current?.checked)} />
                     <label htmlFor='terms_&_conditions' name='terms & conditions' className='poppins text-[10px]'>By Signing up to create an account I accept SriAatriti's Terms & Conditions & Privacy Policy</label>
