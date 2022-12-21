@@ -25,17 +25,17 @@ const LandingPage = () => {
 
   const [mobileNav, setMobileNav] = useRecoilState(navApiAtom);
 
-  useEffect(() => {
-    axios
-      .get(import.meta.env.VITE_APP_BASE_API_LINK + "landingPage")  
-      .then(function (response) {
-        setLandingApiData(response?.data);
+  // useEffect(() => {
+  //   axios
+  //     .get(import.meta.env.VITE_APP_BASE_API_LINK + "landingPage")  
+  //     .then(function (response) {
+  //       setLandingApiData(response?.data);
       
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  }, []);
+  //     })
+  //     .catch(function (error) {
+  //       console.log(error);
+  //     });
+  // }, []);
   
     // useEffect(() => {
     //   console.log('landing data: ', landingApiData)
