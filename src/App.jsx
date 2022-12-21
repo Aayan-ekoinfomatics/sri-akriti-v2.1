@@ -36,6 +36,7 @@ import ProtectedRoute from "./helpers/ProtectedRoute";
 import Products from "./components/products-subcomponents/Products";
 import collection_data from "./mockapi/apiData";
 import EditAddress from "./components/pages/EditAdress";
+import ProtectedRouteAdmin from "./helpers/ProtectedRouteAdmin";
 
 function App() {
   const [navToggle, setNavToggle] = useRecoilState(SidebarAtom);
@@ -69,9 +70,6 @@ function App() {
 
       <div className="sticky top-0 left-0 right-0 bg-white pt-3 md:pt-8 z-[999] shadow-md w-full">
         <Navbar />
-        {/* <div className="hidden md:block bg-red-300 h-[200px] w-full">
-          
-        </div> */}
       </div>
       <div>
         <Routes>
@@ -98,6 +96,10 @@ function App() {
             <Route path="/wishlist" element={<Wishlist />} />
             <Route path="/checkout" element={<Checkout />} />
           </Route>
+
+          {/* <Route element={<ProtectedRouteAdmin />}>
+            <Route  />
+          </Route> */}
 
         </Routes>
       </div>

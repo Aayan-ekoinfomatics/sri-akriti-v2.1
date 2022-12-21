@@ -12,6 +12,7 @@ import categoriesApiAtom from "../../recoil/atoms/products/categoriesApiAtom";
 import { useRecoilState } from "recoil";
 import singleProductApiAtom from "../../recoil/atoms/products/singleProductApiAtom";
 import axios from "axios";
+import wishlistApiAtom from "../../recoil/atoms/wishlist/wishlistApiAtom";
 
 
 const CategoryPage = () => {
@@ -23,7 +24,7 @@ const CategoryPage = () => {
   const [productApi, setProductApi] = useRecoilState(singleProductApiAtom)
 
   const [sortToggle, setSortToggle] = useState(false);
-  const [wishlistToggle, setWishlistToggle] = useState([]);
+  const [wishlistToggle, setWishlistToggle] = useRecoilState(wishlistApiAtom);
   const [filterToggle, setFilterToggle] = useState(false);
   const [desktopSort, setDesktopSort] = useState(false);
 
@@ -57,16 +58,17 @@ const CategoryPage = () => {
     formdata.append("category_name", params?.category_id);
     formdata.append("token", localStorage.getItem("token"));
     axios.post(import.meta.env.VITE_APP_BASE_API_LINK + 'categoryPageNew', formdata).then((response) => {
-      console.log(response)
+      // console.log(response?.data)
       setCategoryApiData(response?.data)
       setWishlistToggle(response?.data?.wishlist_array)
+      localStorage.setItem("wishlist_array", response?.data?.wishlist_array)
     })
     // console.log(response)
   }, [params])
 
   // useEffect(() => {
-  //   setWishlistToggle(localStorage.getItem("wishlist_array"))
-  // }, [localStorage.getItem("wishlist_array")])
+  //  console.log( "wishlist toggle",wishlistToggle)
+  // }, [wishlistToggle])
   
 
 
@@ -445,13 +447,13 @@ const CategoryPage = () => {
                   formdata.append("token", localStorage.getItem("token"));
                   formdata.append("product_id", data?.id);
                   axios.post(import.meta.env.VITE_APP_BASE_API_LINK + 'userWishlist', formdata).then((response) => {
-                    console.log(response?.data)
+                    // console.log(response?.data)
                     localStorage.setItem("wishlist_array", response?.data?.wishlist_array)
                     setWishlistToggle(response?.data?.wishlist_array)
                     // setProfileApiData(response?.data)
                   })
                 }}>
-                  <img src={localStorage.getItem("wishlist_array").includes(data?.id) ? heart_filled : heart_outline} className="w-[25px]" />
+                  <img src={localStorage.getItem("wishlist_array")?.includes(data?.id) ? heart_filled : heart_outline} className="w-[25px]" />
                 </div>
                 <div className="">
                   <div>
@@ -459,10 +461,10 @@ const CategoryPage = () => {
                       to={'/product-details' + '/' + data?.id}
                     ><img src={import.meta.env.VITE_APP_BASE_API_LINK + data?.image} alt="" /></NavLink>
                   </div>
-                  <button className="bg-[#3EDCFF] w-full p-2 md:p-3 text-[16px] md:text-[1.5rem] text-white tracking-[1px] md:tracking-[3px]">
+                  {/* <button className="bg-[#3EDCFF] w-full p-2 md:p-3 text-[16px] md:text-[1.5rem] text-white tracking-[1px] md:tracking-[3px]">
                     ADD TO CART
-                  </button>
-                  <div className="flex gap-2 items-center w-[70%]">
+                  </button> */}
+                  <div className="pl-1 flex gap-2 items-center w-[70%]">
                     <p className="font-[400] poppins text-[0.9rem] md:text-[19px] tracking-[1.4px] pl-1">
                       ₹{data?.actual_price}
                     </p>
@@ -470,7 +472,7 @@ const CategoryPage = () => {
                       ₹{data?.selling_price}
                     </p>
                   </div>
-                  <p className="font-[300] poppins text-[0.9rem] md:text-[19px] tracking-[1.4px] pl-1">
+                  <p className="pl-2 font-[300] poppins text-[0.9rem] md:text-[19px] tracking-[1.4px]">
                     {data?.name}
                   </p>
                 </div>

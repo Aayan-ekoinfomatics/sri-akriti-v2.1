@@ -95,7 +95,7 @@ const AddressAdd = () => {
                 </div>
             </div>
             <div className='w-full flex justify-between md:justify-center md:gap-[60px] pt-5 md:pt-10'>
-                <button className='p-2 px-8 md:p-4 md:px-12 poppins tracking-[3px] poppins text-[11px] md:text-[13px] bg-white text-black' >CANCEL</button>
+                <button className='p-2 px-8 md:p-4 md:px-12 poppins tracking-[3px] poppins text-[11px] md:text-[13px] bg-white text-black'>CANCEL</button>
                 <button className='p-2 px-8 md:p-4 md:px-14 poppins tracking-[3px] poppins text-[11px] md:text-[13px] bg-black text-white' >SAVE</button>
             </div>
         </form>
