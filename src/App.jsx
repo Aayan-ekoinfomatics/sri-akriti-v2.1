@@ -37,6 +37,9 @@ import Products from "./components/products-subcomponents/Products";
 import collection_data from "./mockapi/apiData";
 import EditAddress from "./components/pages/EditAdress";
 import ProtectedRouteAdmin from "./helpers/ProtectedRouteAdmin";
+import ProductsInventoryPage from "./components/admin-components/ProductsInventoryPage";
+import OrdersInventoryPage from "./components/admin-components/OrdersInventoryPage";
+import AddNewProductInventoryPage from "./components/admin-components/AddNewProductInventoryPage";
 
 function App() {
   const [navToggle, setNavToggle] = useRecoilState(SidebarAtom);
@@ -68,9 +71,9 @@ function App() {
         />
       </div>
 
-      <div className="sticky top-0 left-0 right-0 bg-white pt-3 md:pt-8 z-[999] shadow-md w-full">
+      {/* <div className="sticky top-0 left-0 right-0 bg-white pt-3 md:pt-8 z-[999] shadow-md w-full">
         <Navbar />
-      </div>
+      </div> */}
       <div>
         <Routes>
           <Route path='*' element={<Navigate to={localStorage.getItem("status") === 'true' ? '/' : '/login'} replace={true} />} />
@@ -83,6 +86,9 @@ function App() {
           <Route path="/contact-us" element={<ContactUs />} />
           <Route path="/faq" element={<FAQPage />} />
           <Route path="/signup" element={<SignUp />} />
+          <Route path="/admin-products" element={<ProductsInventoryPage />} />
+          <Route path="/admin-orders" element={<OrdersInventoryPage />} />
+          <Route path="/admin-add-product" element={<AddNewProductInventoryPage />} />
           {/* <Route path="/test-page" name='Products' apiData={collection_data} element={<Products />} /> */}
 
           <Route element={<ProtectedRoute />}  >
@@ -103,7 +109,7 @@ function App() {
 
         </Routes>
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }
