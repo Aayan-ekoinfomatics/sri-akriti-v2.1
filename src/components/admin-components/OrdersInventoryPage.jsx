@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import logo from '../../assets/icons/sri-aakriti-logo.svg'
 import order_logo from '../../assets/icons/admin-order-logo.svg'
 import products_logo from '../../assets/icons/admin-products-logo.svg'
@@ -7,12 +7,29 @@ import adminOrdersApi from '../../mockapi/adminOrdersApi'
 import left_arrow from '../../assets/icons/admin-left-pointer.svg'
 import right_arrow from '../../assets/icons/admin-right-pointer.svg'
 import search from '../../assets/icons/admin-search-icon.svg'
+import img from '../../assets/icons/no-data-found.svg'
 
 
 const OrdersInventoryPage = () => {
 
     const [searchData, setSearchData] = useState('');
+    const [filterValue, setFilteredValue] = useState();
 
+    useEffect(() => {
+      setFilteredValue(adminOrdersApi?.products?.filter((filterValue) => {
+        if (searchData === '') {
+            return filterValue
+        } else if (filterValue?.order_name?.toLowerCase()?.includes(searchData?.toLowerCase()) || filterValue?.order_id?.toLowerCase()?.includes(searchData?.toLowerCase()) || filterValue?.order_category?.toLowerCase()?.includes(searchData?.toLowerCase())) {
+            return filterValue
+        }
+    }).length)
+    }, [searchData])
+    
+
+    useEffect(() => {
+      console.log(filterValue)
+    }, [filterValue])
+    
 
     return (
         <div className='w-full bg-[#F5F5F5] flex justify-center items-center'>
@@ -67,10 +84,10 @@ const OrdersInventoryPage = () => {
                         <div className='w-[82%]  px-3'>
                             <div className='w-full my-2 mb-4'>
                                 <div className='w-full shadow-md rounded-[14px] bg-white flex items-center pl-3 gap-3'>
-                                    <span><img src={search} className="w-[15px]" /></span><input type="text" className='w-[95%] py-[8px] px-2rounded-[14px] outline-none' placeholder='Filter Products' onChange={(e) => setSearchData(e.target.value)} />
+                                    <span><img src={search} className="w-[15px]" /></span><input type="text" className='w-[95%] py-[8px] px-2 rounded-[14px] outline-none' placeholder='Filter Products' onChange={(e) => setSearchData(e.target.value)} />
                                 </div>
                             </div>
-                            <div className='w-full mt-8'>
+                            <div className='w-full mt-8  min-h-[70vh]'>
                                 <div className='w-full grid grid-cols-4 gap-4 justify-center items-center px-[12px]'>
                                     <div className='flex justify-center items-center'>
                                         <h1 className='text-[#718096]'>#</h1>
@@ -87,6 +104,9 @@ const OrdersInventoryPage = () => {
                                 </div>
                                 <div className='w-full'>
                                     {
+                                        filterValue > 0 ? 
+                                        <div>
+                                    {
                                         adminOrdersApi?.products?.filter((filterValue) => {
                                             if (searchData === '') {
                                                 return filterValue
@@ -94,7 +114,7 @@ const OrdersInventoryPage = () => {
                                                 return filterValue
                                             }
                                         }).map((data, i) => (
-                                            <div key={i} className='w-full bg-[#FFFFFF] shadow-md rounded-[14px] py-[8px] px-[11px] my-7'>
+                                            <div key={i} className='w-full bg-[#FFFFFF] shadow-md rounded-[14px] py-[8px] px-[11px] my-7 h-full'>
                                                 <div className='grid grid-cols-4 gap-4 justify-center items-center'>
                                                     <div className='flex justify-center items-center'>
                                                         <h1 className='text-[#718096]'>{data?.order_id}</h1>
@@ -112,13 +132,24 @@ const OrdersInventoryPage = () => {
                                                     ))}</div> */}
                                                     <div className='flex justify-center items-center'>
                                                         <div className='flex gap-5 w-fit items-center'>
-                                                            <span className=''><img src={data?.icon_edit} className="w-[16px]" /></span>
-                                                            <span className=''><img src={data?.icon_delete} className="w-[14px]" /></span>
+                                                            <span className='cursor-pointer'><img src={data?.icon_edit} className="w-[16px]" /></span>
+                                                            <span className='cursor-pointer'><img src={data?.icon_delete} className="w-[14px]" /></span>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         ))
+                                    }
+                                    </div>
+                                    : 
+                                    <div className='w-full h-[65vh] flex flex-col gap-8 justify-center items-center'>
+                                        <div className='w-fit grayscale-[50%]'>
+                                            <img src={img} className="w-[180px]" />
+                                        </div>
+                                        <div className='text-center text-[#7C7A7A]'>
+                                            <p className='roboto text-[14px]'>No results found</p>
+                                        </div>
+                                    </div>
                                     }
                                 </div>
                             </div>

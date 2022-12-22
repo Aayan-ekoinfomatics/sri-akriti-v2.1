@@ -6,6 +6,7 @@ import admiProductsApi from '../../mockapi/admiProductsApi'
 import left_arrow from '../../assets/icons/admin-left-pointer.svg'
 import right_arrow from '../../assets/icons/admin-right-pointer.svg'
 import search from '../../assets/icons/admin-search-icon.svg'
+import { Link } from 'react-router-dom'
 
 
 const ProductsInventoryPage = () => {
@@ -30,7 +31,7 @@ const ProductsInventoryPage = () => {
                                 <h1 className='roboto text-[50px] font-[900]'>Products</h1>
                             </div>
                             <div className='w-fit mr-4'>
-                                <button className='w-[120px] bg-white p-1 rounded-[5px] shadow-md'>Add Products</button>
+                                <Link to='/admin-add-product'><button className='w-[120px] bg-white p-1 rounded-[5px] shadow-md'>Add Products</button></Link>
                             </div>
                         </div>
                     </div>
@@ -109,8 +110,8 @@ const ProductsInventoryPage = () => {
                                                     ))}</div> */}
                                                     <div className='flex justify-center items-center'>
                                                         <div className='flex gap-5 w-fit items-center'>
-                                                            <span className=''><img src={data?.icon_edit} className="w-[16px]" /></span>
-                                                            <span className=''><img src={data?.icon_delete} className="w-[14px]" /></span>
+                                                            <span className='cursor-pointer'><img src={data?.icon_edit} className="w-[16px]" /></span>
+                                                            <span className='cursor-pointer'><img src={data?.icon_delete} className="w-[14px]" /></span>
                                                         </div>
                                                     </div>
                                                 </div>

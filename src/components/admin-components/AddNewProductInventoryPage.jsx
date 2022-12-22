@@ -81,34 +81,34 @@ const AddNewProductInventoryPage = () => {
                                 <div className='flex-1 pl-4'>
                                     <div className='w-full rounded-[14px] mt-3 mb-6'>
                                         <label className='text-[11px] text-[#7C7A7A]'>Products Name</label>
-                                        <input type="text" className='w-full shadow-md rounded-[14px] py-2 outline-none pl-4' />
+                                        <input type="text" className='w-full shadow-md rounded-[14px] py-2 outline-none text-[15px] px-4' />
                                     </div>
                                     <div className='w-full rounded-[14px] mt-3 mb-6'>
                                         <label className='text-[11px] text-[#7C7A7A]'>Products Code</label>
-                                        <input type="text" className='w-full shadow-md rounded-[14px] py-2 outline-none pl-4' />
+                                        <input type="text" className='w-full shadow-md rounded-[14px] py-2 outline-none text-[15px] px-4' />
                                     </div>
                                     <div className='w-full rounded-[14px] mt-3 mb-6'>
                                         <label className='text-[11px] text-[#7C7A7A]'>Diamond Quality</label>
-                                        <input type="text" className='w-full shadow-md rounded-[14px] py-2 outline-none pl-4' />
+                                        <input type="text" className='w-full shadow-md rounded-[14px] py-2 outline-none text-[15px] px-4' />
                                     </div>
                                     <div className='w-full flex gap-4 rounded-[14px] mt-3 mb-6'>
                                         <div className='w-full'>
                                             <label className='text-[11px] text-[#7C7A7A]'>Products Size</label>
-                                            <input type="text" className='w-full rounded-[14px] py-2 outline-none pl-4 shadow-md' />
+                                            <input type="text" className='w-full rounded-[14px] py-2 outline-none text-[15px] px-4 shadow-md' />
                                         </div>
                                         <div className='w-full'>
                                             <label className='text-[11px] text-[#7C7A7A]'>Products Weight</label>
-                                            <input type="text" className='w-full rounded-[14px] py-2 outline-none pl-4 shadow-md' />
+                                            <input type="text" className='w-full rounded-[14px] py-2 outline-none text-[15px] px-4 shadow-md' />
                                         </div>
                                     </div>
                                     <div className='w-full flex gap-4 rounded-[14px] mt-3 mb-6'>
                                         <div className='w-full'>
                                             <label className='text-[11px] text-[#7C7A7A]'>Products Size</label>
-                                            <input type="text" className='w-full rounded-[14px] py-2 outline-none pl-4 shadow-md' />
+                                            <input type="text" className='w-full rounded-[14px] py-2 outline-none text-[15px] px-4 shadow-md' />
                                         </div>
                                         <div className='w-full'>
                                             <label className='text-[11px] text-[#7C7A7A]'>Products Size</label>
-                                            <input type="text" className='w-full rounded-[14px] py-2 outline-none pl-4 shadow-md' />
+                                            <input type="text" className='w-full rounded-[14px] py-2 outline-none text-[15px] px-4 shadow-md' />
                                         </div>
                                     </div>
                                 </div>
