@@ -7,6 +7,7 @@ import left_arrow from '../../assets/icons/admin-left-pointer.svg'
 import right_arrow from '../../assets/icons/admin-right-pointer.svg'
 import search from '../../assets/icons/admin-search-icon.svg'
 import addProductsAdminApi from '../../mockapi/addProductsAdminApi'
+import { NavLink } from 'react-router-dom'
 
 
 const AddNewProductInventoryPage = () => {
@@ -42,22 +43,26 @@ const AddNewProductInventoryPage = () => {
                         {/* content-flex - 1 */}
                         <div className='w-[15%] px-3'>
                             <div className='w-full flex flex-col justify-start items-center pt-[110px] bg-[#3EDCFF] h-[97%] shadow-xl rounded-[14px] my-2'>
-                                <div className='w-full hover:bg-[#19C7EE] lg:pl-3 py-2  cursor-pointer flex justify-start gap-4 my-2'>
-                                    <div>
-                                        <img src={order_logo} className="w-[20px]" />
+                                <NavLink to='/admin-orders' className='w-full block'>
+                                    <div className='w-full hover:bg-[#19C7EE] lg:pl-3 py-2  cursor-pointer flex justify-start gap-4 my-2'>
+                                        <div>
+                                            <img src={order_logo} className="w-[20px]" />
+                                        </div>
+                                        <div>
+                                            <h1 className='roboto text-[17px] font-[500]'>Order</h1>
+                                        </div>
                                     </div>
-                                    <div>
-                                        <h1 className='roboto text-[17px] font-[500]'>Order</h1>
+                                </NavLink>
+                                <NavLink to='/admin-products' className='w-full block'>
+                                    <div className='w-full hover:bg-[#19C7EE] pl-5 py-2  cursor-pointer flex justify-start gap-4 my-2'>
+                                        <div>
+                                            <img src={products_logo} className="w-[20px]" />
+                                        </div>
+                                        <div>
+                                            <h1 className='roboto text-[17px] font-[500]'>Products</h1>
+                                        </div>
                                     </div>
-                                </div>
-                                <div className='w-full bg-[#19C7EE] lg:pl-3 py-2  cursor-pointer flex justify-start gap-4 my-2'>
-                                    <div>
-                                        <img src={products_logo} className="w-[20px]" />
-                                    </div>
-                                    <div>
-                                        <h1 className='roboto text-[17px] font-[500]'>Products</h1>
-                                    </div>
-                                </div>
+                                </NavLink>
                             </div>
                         </div>
 

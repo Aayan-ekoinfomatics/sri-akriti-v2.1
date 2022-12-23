@@ -8,6 +8,7 @@ import left_arrow from '../../assets/icons/admin-left-pointer.svg'
 import right_arrow from '../../assets/icons/admin-right-pointer.svg'
 import search from '../../assets/icons/admin-search-icon.svg'
 import img from '../../assets/icons/no-data-found.svg'
+import { NavLink } from 'react-router-dom'
 
 
 const OrdersInventoryPage = () => {
@@ -16,20 +17,20 @@ const OrdersInventoryPage = () => {
     const [filterValue, setFilteredValue] = useState();
 
     useEffect(() => {
-      setFilteredValue(adminOrdersApi?.products?.filter((filterValue) => {
-        if (searchData === '') {
-            return filterValue
-        } else if (filterValue?.order_name?.toLowerCase()?.includes(searchData?.toLowerCase()) || filterValue?.order_id?.toLowerCase()?.includes(searchData?.toLowerCase()) || filterValue?.order_category?.toLowerCase()?.includes(searchData?.toLowerCase())) {
-            return filterValue
-        }
-    }).length)
+        setFilteredValue(adminOrdersApi?.products?.filter((filterValue) => {
+            if (searchData === '') {
+                return filterValue
+            } else if (filterValue?.order_name?.toLowerCase()?.includes(searchData?.toLowerCase()) || filterValue?.order_id?.toLowerCase()?.includes(searchData?.toLowerCase()) || filterValue?.order_category?.toLowerCase()?.includes(searchData?.toLowerCase())) {
+                return filterValue
+            }
+        }).length)
     }, [searchData])
-    
 
-    useEffect(() => {
-      console.log(filterValue)
-    }, [filterValue])
-    
+
+    // useEffect(() => {
+    //   console.log(filterValue)
+    // }, [filterValue])
+
 
     return (
         <div className='w-full bg-[#F5F5F5] flex justify-center items-center'>
@@ -49,9 +50,9 @@ const OrdersInventoryPage = () => {
                             <div className='w-full'>
                                 <h1 className='roboto text-[50px] font-[900]'>Orders</h1>
                             </div>
-                            <div className='w-fit mr-4'>
+                            {/* <div className='w-fit mr-4'>
                                 <button className='w-[120px] bg-white p-1 rounded-[5px] shadow-md'>Add Orders</button>
-                            </div>
+                            </div> */}
                         </div>
                     </div>
 
@@ -69,14 +70,16 @@ const OrdersInventoryPage = () => {
                                         <h1 className='roboto text-[17px] font-[500]'>Order</h1>
                                     </div>
                                 </div>
-                                <div className='w-full hover:bg-[#19C7EE] pl-5 py-2  cursor-pointer flex justify-start gap-4 my-2'>
-                                    <div>
-                                        <img src={products_logo} className="w-[20px]" />
+                                <NavLink to='/admin-products' className='w-full block'>
+                                    <div className='w-full hover:bg-[#19C7EE] pl-5 py-2  cursor-pointer flex justify-start gap-4 my-2'>
+                                        <div>
+                                            <img src={products_logo} className="w-[20px]" />
+                                        </div>
+                                        <div>
+                                            <h1 className='roboto text-[17px] font-[500]'>Products</h1>
+                                        </div>
                                     </div>
-                                    <div>
-                                        <h1 className='roboto text-[17px] font-[500]'>Products</h1>
-                                    </div>
-                                </div>
+                                </NavLink>
                             </div>
                         </div>
 
@@ -104,52 +107,52 @@ const OrdersInventoryPage = () => {
                                 </div>
                                 <div className='w-full'>
                                     {
-                                        filterValue > 0 ? 
-                                        <div>
-                                    {
-                                        adminOrdersApi?.products?.filter((filterValue) => {
-                                            if (searchData === '') {
-                                                return filterValue
-                                            } else if (filterValue?.order_name?.toLowerCase()?.includes(searchData?.toLowerCase()) || filterValue?.order_id?.toLowerCase()?.includes(searchData?.toLowerCase()) || filterValue?.order_category?.toLowerCase()?.includes(searchData?.toLowerCase())) {
-                                                return filterValue
-                                            }
-                                        }).map((data, i) => (
-                                            <div key={i} className='w-full bg-[#FFFFFF] shadow-md rounded-[14px] py-[8px] px-[11px] my-7 h-full'>
-                                                <div className='grid grid-cols-4 gap-4 justify-center items-center'>
-                                                    <div className='flex justify-center items-center'>
-                                                        <h1 className='text-[#718096]'>{data?.order_id}</h1>
-                                                    </div>
-                                                    <div className='flex justify-center items-center'>
-                                                        <h1 className='text-[#718096]'>{data?.order_name}</h1>
-                                                    </div>
-                                                    <div className='flex justify-center items-center'>
-                                                        <h1 className='text-[#718096]'>{data?.order_category}</h1>
-                                                    </div>
-                                                    {/* <div className='inline-block flex'>{data?.product_action?.map((sub_data, sub_index) => (
+                                        filterValue > 0 ?
+                                            <div>
+                                                {
+                                                    adminOrdersApi?.products?.filter((filterValue) => {
+                                                        if (searchData === '') {
+                                                            return filterValue
+                                                        } else if (filterValue?.order_name?.toLowerCase()?.includes(searchData?.toLowerCase()) || filterValue?.order_id?.toLowerCase()?.includes(searchData?.toLowerCase()) || filterValue?.order_category?.toLowerCase()?.includes(searchData?.toLowerCase())) {
+                                                            return filterValue
+                                                        }
+                                                    }).map((data, i) => (
+                                                        <div key={i} className='w-full bg-[#FFFFFF] shadow-md rounded-[14px] py-[8px] px-[11px] my-7 h-full'>
+                                                            <div className='grid grid-cols-4 gap-4 justify-center items-center'>
+                                                                <div className='flex justify-center items-center'>
+                                                                    <h1 className='text-[#718096]'>{data?.order_id}</h1>
+                                                                </div>
+                                                                <div className='flex justify-center items-center'>
+                                                                    <h1 className='text-[#718096]'>{data?.order_name}</h1>
+                                                                </div>
+                                                                <div className='flex justify-center items-center'>
+                                                                    <h1 className='text-[#718096]'>{data?.order_category}</h1>
+                                                                </div>
+                                                                {/* <div className='inline-block flex'>{data?.product_action?.map((sub_data, sub_index) => (
                                                         <div key={sub_index} className='flex items-center border border-red-500'>
                                                             <span className='border border-red-500'><img src={sub_data?.img} className="w-[20px]" /></span>
                                                         </div>
                                                     ))}</div> */}
-                                                    <div className='flex justify-center items-center'>
-                                                        <div className='flex gap-5 w-fit items-center'>
-                                                            <span className='cursor-pointer'><img src={data?.icon_edit} className="w-[16px]" /></span>
-                                                            <span className='cursor-pointer'><img src={data?.icon_delete} className="w-[14px]" /></span>
+                                                                <div className='flex justify-center items-center'>
+                                                                    <div className='flex gap-5 w-fit items-center'>
+                                                                        <span className='cursor-pointer'><img src={data?.icon_edit} className="w-[16px]" /></span>
+                                                                        <span className='cursor-pointer'><img src={data?.icon_delete} className="w-[14px]" /></span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
                                                         </div>
-                                                    </div>
+                                                    ))
+                                                }
+                                            </div>
+                                            :
+                                            <div className='w-full h-[65vh] flex flex-col gap-8 justify-center items-center'>
+                                                <div className='w-fit grayscale-[50%]'>
+                                                    <img src={img} className="w-[180px]" />
+                                                </div>
+                                                <div className='text-center text-[#7C7A7A]'>
+                                                    <p className='roboto text-[14px]'>No results found</p>
                                                 </div>
                                             </div>
-                                        ))
-                                    }
-                                    </div>
-                                    : 
-                                    <div className='w-full h-[65vh] flex flex-col gap-8 justify-center items-center'>
-                                        <div className='w-fit grayscale-[50%]'>
-                                            <img src={img} className="w-[180px]" />
-                                        </div>
-                                        <div className='text-center text-[#7C7A7A]'>
-                                            <p className='roboto text-[14px]'>No results found</p>
-                                        </div>
-                                    </div>
                                     }
                                 </div>
                             </div>
