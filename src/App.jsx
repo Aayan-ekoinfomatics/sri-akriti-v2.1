@@ -40,6 +40,7 @@ import ProtectedRouteAdmin from "./helpers/ProtectedRouteAdmin";
 import ProductsInventoryPage from "./components/admin-components/ProductsInventoryPage";
 import OrdersInventoryPage from "./components/admin-components/OrdersInventoryPage";
 import AddNewProductInventoryPage from "./components/admin-components/AddNewProductInventoryPage";
+import AdminEditSingleProduct from "./components/admin-components/AdminEditSingleProduct";
 
 function App() {
   const [navToggle, setNavToggle] = useRecoilState(SidebarAtom);
@@ -86,9 +87,14 @@ function App() {
           <Route path="/contact-us" element={<ContactUs />} />
           <Route path="/faq" element={<FAQPage />} />
           <Route path="/signup" element={<SignUp />} />
-          <Route path="/admin-products" element={<ProductsInventoryPage />} />
-          <Route path="/admin-orders" element={<OrdersInventoryPage />} />
-          <Route path="/admin-add-product" element={<AddNewProductInventoryPage />} />
+
+          {/* <Route element={<ProtectedRouteAdmin />} > */}
+            <Route path="/admin-products" element={<ProductsInventoryPage />} />
+            <Route path="/admin-orders" element={<OrdersInventoryPage />} />
+            <Route path="/admin-add-product" element={<AddNewProductInventoryPage />} />
+            <Route path="/admin-products/:product_id" element={<AdminEditSingleProduct />} />
+          {/* </Route> */}
+
           {/* <Route path="/test-page" name='Products' apiData={collection_data} element={<Products />} /> */}
 
           <Route element={<ProtectedRoute />}  >

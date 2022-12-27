@@ -41,12 +41,12 @@ const OrdersInventoryPage = () => {
 
                     {/* sub-flex - 1 */}
                     <div className='w-full flex gap-3'>
-                        <div className='w-[20%] pb-4'>
+                        <div className='w-[18%] pb-4'>
                             <div className='w-full flex flex-col justify-end items-center'>
                                 <img src={logo} className="w-[85px]" />
                             </div>
                         </div>
-                        <div className='w-[80%] flex justify-between items-center'>
+                        <div className='w-[82%] flex justify-between items-center'>
                             <div className='w-full'>
                                 <h1 className='roboto text-[50px] font-[900]'>Orders</h1>
                             </div>
@@ -158,12 +158,11 @@ const OrdersInventoryPage = () => {
                             </div>
                         </div>
 
-
                     </div>
                 </div>
 
                 {/* mani flex - 2 */}
-                <div className='w-full flex justify-center items-center pt-4 relative'>
+                <div className='w-full flex justify-center items-center pt-10 relative'>
                     <div className='flex items-center gap-3'>
                         <span className='mr-3' ><img src={left_arrow} className="w-[11px]" /></span>
                         {

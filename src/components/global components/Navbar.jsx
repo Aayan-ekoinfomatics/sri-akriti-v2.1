@@ -64,9 +64,9 @@ const Navbar = () => {
       <header className="w-full flex justify-end items-end z-[999]">
         {/* desktop menu */}
         <nav className="hidden md:flex justify-evenly pb-0 w-[95%] mx-auto">
-          <div className="md:w-[100px] lg:w-[180px] flex justify-center items-center pb-4">
+          <div className="pr-6 lg:pr-0 flex justify-center items-center pb-7 lg:pb-4">
             <Link to="/">
-              <img src={logo} className="w-[120px]" />
+              <img src={logo} className="w-[80px] lg:w-[140px]" />
             </Link>
           </div>
           {/* <ul className="flex justify-evenly items-center w-full gill-sans-nav tracking-wider lg:pl-6 font-[300] md:text-sm lg:text-lg xl:text-xl">
@@ -189,7 +189,7 @@ const Navbar = () => {
                 </div>
                 :
                 <div className={`${data?.title === 'ACCOUNT' ? 'hidden' : ''}`} onMouseLeave={() => setNavHoverShow(null)} key={i}>
-                  <NavLink onMouseEnter={() => { setNavHoverShow(data?.title) }}>
+                  <NavLink to={data?.routes} onMouseEnter={() => { setNavHoverShow(data?.title) }}>
                     <li className={`cursor-pointer group flex flex-col w-full pb-5`}>
                       <p className="uppercase poppins font-[300] text-[15px] lg:text-[20px]">{data?.title}</p>
                       <span className={`h-[1px] max-w-0 group-hover:max-w-full transition-all duration-300 bg-black ${navHoverShow === data?.title ? 'max-w-full' : 'max-w-0'}`}></span>
@@ -199,7 +199,7 @@ const Navbar = () => {
               })
             }
           </ul>
-          <div className="w-[10%] gap-3 lg:gap-8 hidden md:flex justify-end md:justify-start items-center pb-7">
+          <div className="pl-5 lg:pl-0 w-[10%] gap-3 lg:gap-8 hidden md:flex justify-end md:justify-start items-center pb-7">
             {
               localStorage.getItem("status") === 'true' ?
                 <NavLink className={`min-w-[14px]`} to='/wishlist'><img src={heart} className="w-[16px] lg:w-[22px]" /></NavLink>
@@ -216,7 +216,7 @@ const Navbar = () => {
 
 
         {/* mobile menu */}
-        <div className="sticky w-full flex flex-col items-center mb-4 md:hidden">
+        <div className="sticky w-full flex flex-col items-center md:hidden">
           <div className="sticky top-0 bg-white z-[999] flex w-[95%] justify-between items-center pt-2">
             <div className="flex-1"></div>
             <div className="flex-1">

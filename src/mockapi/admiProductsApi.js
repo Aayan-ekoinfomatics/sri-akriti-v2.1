@@ -1,20 +1,6 @@
 import edit_icon from '../assets/icons/admit-edit.svg'
 import delete_icon from '../assets/icons/admin-delete.svg'
 
-// const admiProductsApi = {
-//     products: [
-//         {product_id: 'GH33', product_name: 'SAA-w2-001', product_category: 'Necklace', product_action: [{img: edit_icon}, {img: delete_icon}]},
-//         {product_id: 'GH33', product_name: 'SAA-w2-001', product_category: 'Necklace', product_action: [{img: edit_icon}, {img: delete_icon}]},
-//         {product_id: 'GH33', product_name: 'SAA-w2-001', product_category: 'Necklace', product_action: [{img: edit_icon}, {img: delete_icon}]},
-//         {product_id: 'GH33', product_name: 'SAA-w2-001', product_category: 'Necklace', product_action: [{img: edit_icon}, {img: delete_icon}]},
-//         {product_id: 'GH33', product_name: 'SAA-w2-001', product_category: 'Necklace', product_action: [{img: edit_icon}, {img: delete_icon}]},
-//         {product_id: 'GH33', product_name: 'SAA-w2-001', product_category: 'Necklace', product_action: [{img: edit_icon}, {img: delete_icon}]},
-//         {product_id: 'GH33', product_name: 'SAA-w2-001', product_category: 'Necklace', product_action: [{img: edit_icon}, {img: delete_icon}]},
-//         {product_id: 'GH33', product_name: 'SAA-w2-001', product_category: 'Necklace', product_action: [{img: edit_icon}, {img: delete_icon}]},
-//         {product_id: 'GH33', product_name: 'SAA-w2-001', product_category: 'Necklace', product_action: [{img: edit_icon}, {img: delete_icon}]},
-//         {product_id: 'GH33', product_name: 'SAA-w2-001', product_category: 'Necklace', product_action: [{img: edit_icon}, {img: delete_icon}]},
-//     ]
-// }
 const admiProductsApi = {
     page_name: 'Products',
     titles: [

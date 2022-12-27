@@ -54,7 +54,7 @@ const AddNewProductInventoryPage = () => {
                                     </div>
                                 </NavLink>
                                 <NavLink to='/admin-products' className='w-full block'>
-                                    <div className='w-full hover:bg-[#19C7EE] pl-5 py-2  cursor-pointer flex justify-start gap-4 my-2'>
+                                    <div className='w-full hover:bg-[#19C7EE] pl-5 py-2 lg:pl-3 cursor-pointer flex justify-start gap-4 my-2'>
                                         <div>
                                             <img src={products_logo} className="w-[20px]" />
                                         </div>
@@ -137,6 +137,19 @@ const AddNewProductInventoryPage = () => {
                     </div>
                     <div className='absolute right-[13%]'>
                         <p className='text-[#718096] text-[14px]'>Showing 11- 20 of 64 results</p>
+                        <p>
+                            {
+                                admiProductsApi?.products?.map((data, i) => {
+                                    return (
+                                        <div className='border border-red-500'>
+                                            <p>{data?.product_id}</p>
+                                            <p>{data?.product_name}</p>
+                                            <p>{data?.product_category}</p>
+                                        </div>
+                                    )
+                                })
+                            }
+                        </p>
                     </div>
                 </div> */}
             </div>
